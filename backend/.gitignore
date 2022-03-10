@@ -3,3 +3,6 @@
 
 # compiled output
 /build
+
+# enviroment files
+.env
