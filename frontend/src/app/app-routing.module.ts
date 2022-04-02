@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from "./app.component";
+import { ScreensRoutingModule } from "./screens/screens.routing";
 
-const routes: Routes = [];
+const routes: Routes = [ 
+  { path: "**", redirectTo: "" } 
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), ScreensRoutingModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
