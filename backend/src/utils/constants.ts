@@ -1,0 +1,6 @@
+export const LIMIT_DEFAULT = 10;
+export const OFFSET_DEFAULT = 0;
+export const DAY_MILLISECONDS = 86400000;
+export const NUMBER_OF_DAYS_GET_AVERAGE = 100;
+export const DEFAULT_PRODUCT_SCORE = 4.5;
+export const VERY_BIG_NUMBER = 1844674407370955161;

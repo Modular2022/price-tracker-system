@@ -1,4 +1,4 @@
-import express, { Application, Request, Response, Router } from 'express';
+import express, { Application } from 'express';
 import cors from 'cors';
 import path from 'path';
 import morgan from 'morgan';
@@ -10,14 +10,25 @@ import AppError from './utils/app-error';
 import Database from './database/db.config';
 import GlobalErrorHandler from './controllers/errors/global-error-handler.controller';
 
+import authRouter from './routes/auth/authRouter';
+import departmentRouter from './routes/department/departmentRouter';
+import denounceRouter from './routes/extras/denounceRouter';
+import productRequestRouter from './routes/extras/productRequestRouter';
+import themeRouter from './routes/extras/themeRouter';
+import productRouter from './routes/product/productRouter';
+import storeRouter from './routes/store/storeRouter';
+import userRouter from './routes/user/userRouter';
+
 class Server {
 
   private app: Application;
   private port: string;
+  private dbConnection: Database;
 
   constructor() {
     this.app = express();
     this.port = process.env.PORT || '3000';
+    this.dbConnection = new Database();
 
     console.clear();
     console.log('\n\n=====================================================================');
@@ -63,8 +74,7 @@ class Server {
   }
 
   private async startDBConnection(): Promise<void> {
-    const databaseConnection = new Database();
-    await databaseConnection.initialize();
+    await this.dbConnection.initialize();
   }
 
   private startMiddlewares(): void {

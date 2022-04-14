@@ -2,26 +2,27 @@ import { Options, Sequelize } from 'sequelize';
 
 class Database {
 
-  private dbConfig: Options;
+  private static dbConfig: Options = {
+    database: process.env.DB_DATABASE || '',
+    username: process.env.DB_USER || '',
+    password: process.env.DB_PASSWORD || '',
+    host: process.env.DB_HOST || '',
+    port: Number(process.env.DB_PORT) || 3306,
+    dialect: 'mysql',
+    sync: { force: true },
+    pool: {
+      max: 10, // Maximum number of connection in pool
+      min: 0, // Minimum number of connection in pool
+      idle: 10000, // The maximum time, in milliseconds, that a connection can be idle before being released.
+      acquire: 60000, // The maximum time, in milliseconds, that pool will try to get connection before throwing error
+    },
+    logging: true, // show log messages in terminal each request
+  };
 
-  constructor() {
-    this.dbConfig = {
-      database: process.env.DB_DATABASE || '',
-      username: process.env.DB_USER || '',
-      password: process.env.DB_PASSWORD || '',
-      host: process.env.DB_HOST || '',
-      port: Number(process.env.DB_PORT) || 3306,
-      dialect: 'mysql',
-      sync: { force: true },
-      pool: {
-        max: 10, // Maximum number of connection in pool
-        min: 0, // Minimum number of connection in pool
-        idle: 10000, // The maximum time, in milliseconds, that a connection can be idle before being released.
-        acquire: 60000, // The maximum time, in milliseconds, that pool will try to get connection before throwing error
-      },
-      logging: true, // show log messages in terminal each request
-    };
-  }
+  static sequelize: Sequelize = new Sequelize(this.dbConfig);;
+
+  constructor() { }
+
 
   private createDBRelationships(secuelize: any) {
     secuelize.models.Product.hasMany(
@@ -94,8 +95,7 @@ class Database {
 
   public async initialize() {
     try {
-      const sequelize = new Sequelize(this.dbConfig);
-      const secuelizeRelationships = this.createDBRelationships(sequelize);
+      const secuelizeRelationships = this.createDBRelationships(Database.sequelize);
       const connectionMsg = await secuelizeRelationships.authenticate()
       console.log(`Connection to database established - ${connectionMsg}`);
     } catch (error) {
