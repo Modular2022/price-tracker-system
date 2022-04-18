@@ -1,6 +1,9 @@
-const express = require('express');
-const authController = require('../controllers/authController');
-const productRequestController = require('../controllers/addProductRequestController');
+import express from 'express';
+import AuthController from '../../controllers/auth/auth.controller';
+import ProductRequestController from '../../controllers/extras/product-request.controller';
+
+const authController = new AuthController();
+const productRequestController = new ProductRequestController();
 
 const router = express.Router();
 
@@ -29,4 +32,4 @@ router.delete(
   productRequestController.deleteProductRequest
 );
 
-module.exports = router;
+export default router;

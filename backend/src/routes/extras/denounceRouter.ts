@@ -1,6 +1,9 @@
-const express = require('express');
-const authController = require('../controllers/authController');
-const denounceController = require('../controllers/denounceController');
+import express from 'express';
+import AuthController from '../../controllers/auth/auth.controller';
+import DenounceController from '../../controllers/extras/denounce.controller';
+
+const authController = new AuthController();
+const denounceController = new DenounceController();
 
 const router = express.Router();
 
@@ -27,4 +30,4 @@ router.delete(
   denounceController.deleteDenounce
 );
 
-module.exports = router;
+export default router;

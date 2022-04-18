@@ -19,14 +19,14 @@ class Database {
     logging: true, // show log messages in terminal each request
   };
 
-  static sequelize: Sequelize = new Sequelize(this.dbConfig);;
+  static sequelize: Sequelize = new Sequelize(this.dbConfig);
 
   constructor() { }
 
 
   private createDBRelationships(secuelize: any) {
     secuelize.models.Product.hasMany(
-      secuelize.models.ProductHistoryPrice,
+      secuelize.models.ProductPrice,
       {
         foreignKey: 'product_id',
         as: 'prices',
@@ -43,9 +43,9 @@ class Database {
       foreignKey: 'product_id',
       as: 'images',
     });
-    secuelize.models.Product.hasMany(secuelize.models.Review, {
+    secuelize.models.Product.hasMany(secuelize.models.ProductReview, {
       foreignKey: 'product_id',
-      as: 'reviews',
+      as: 'product_reviews',
     });
     secuelize.models.Product.hasMany(
       secuelize.models.UserWishlistModel,
@@ -67,7 +67,7 @@ class Database {
       as: 'wishlist',
     });
 
-    secuelize.models.Comment.belongsTo(secuelize.models.User, {
+    secuelize.models.ProductComment.belongsTo(secuelize.models.User, {
       foreignKey: 'user_id',
       as: 'user',
     });

@@ -1,11 +1,16 @@
-const express = require('express');
-const authController = require('../controllers/authController');
-const productController = require('../controllers/productController');
-const productHistoryPriceRouter = require('./productHistoryPriceRouter.js');
-const productImageRouter = require('./productImageRouter.js');
-const productCharacteristicRouter = require('./productCharacteristicRouter.js');
-const productReviewRouter = require('./productReviewRouter.js');
-const productCommentRouter = require('./productCommentRouter.js');
+import express from 'express';
+
+import ProductPriceRouter from './productPriceRouter';
+import ProductImageRouter from './productImageRouter';
+import ProductCharacteristicRouter from './productCharacteristicRouter';
+import ProductReviewRouter from './productReviewRouter';
+import ProductCommentRouter from './productCommentRouter';
+
+import AuthController from '../../controllers/auth/auth.controller';
+import ProductController from '../../controllers/product/product.controller';
+
+const authController = new AuthController();
+const productController = new ProductController();
 
 const router = express.Router();
 
@@ -50,10 +55,10 @@ router.patch(
   productController.updateProduct
 );
 
-router.use('/', productHistoryPriceRouter);
-router.use('/', productImageRouter);
-router.use('/', productCharacteristicRouter);
-router.use('/', productReviewRouter);
-router.use('/', productCommentRouter);
+router.use('/', ProductPriceRouter);
+router.use('/', ProductImageRouter);
+router.use('/', ProductCharacteristicRouter);
+router.use('/', ProductReviewRouter);
+router.use('/', ProductCommentRouter);
 
-module.exports = router;
+export default router;

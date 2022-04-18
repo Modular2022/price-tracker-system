@@ -1,9 +1,12 @@
-const express = require('express');
-const authController = require('../controllers/authController');
-const productReviewController = require('../controllers/productReviewController');
-// const fileController = require('../controllers/fileController');
+import express from 'express';
+import AuthController from '../../controllers/auth/auth.controller';
+import ProductReviewController from '../../controllers/product/product-review.controller';
+
+const authController = new AuthController();
+const productReviewController = new ProductReviewController();
 
 const router = express.Router();
+
 
 router.post(
   '/:id_product/review',
@@ -34,4 +37,4 @@ router.delete(
   productReviewController.deleteProductReview
 );
 
-module.exports = router;
+export default router;

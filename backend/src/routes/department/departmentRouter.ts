@@ -32,4 +32,4 @@ router.patch(
   departmentController.updateDepartment
 );
 
-module.exports = router;
+export default router;

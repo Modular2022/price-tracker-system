@@ -1,11 +1,10 @@
-import { TypeModel } from './../../types/common.t';
-import { Model } from 'sequelize/types';
+import { TypeModel } from '../../types/common.t';
 import { NextFunction, Response } from 'express';
 
 import AppError from '../../utils/app-error';
 import catchAsync from '../../utils/catch-async';
-import file from './fileController';
 import UserRequestMiddleware from '../../interfaces/user/user-request-middleware.i';
+import FileController from './file.controller';
 
 class HandlerFactoryController {
 
@@ -19,7 +18,8 @@ class HandlerFactoryController {
         return next(new AppError(`Not found '${modelName}' with that ID\``, 404));
       }
       if (doc.image) {
-        file.deleteFile(doc.image);
+        const File = new FileController();
+        File.deleteFile(doc.image);
       }
       await doc.destroy();
       res.status(204).json({
@@ -73,7 +73,7 @@ class HandlerFactoryController {
       });
     });
 
-  getAll = (Model: TypeModel, modelName: string, options: Object) =>
+  getAll = (Model: TypeModel, modelName: string, options: Object | undefined) =>
     catchAsync(async (req: UserRequestMiddleware, res: Response, next: NextFunction) => {
       const doc = await Model.findAll(options);
       const data: any = {};

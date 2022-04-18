@@ -1,8 +1,12 @@
-const express = require('express');
-const authController = require('../controllers/authController');
-const fileController = require('../controllers/fileController');
-const themeController = require('../controllers/themeController');
+import express from 'express';
 
+import AuthController from '../../controllers/auth/auth.controller';
+import FileController from '../../controllers/common/file.controller';
+import ThemeController from '../../controllers/extras/theme.controller';
+
+const authController = new AuthController();
+const fileController = new FileController();
+const themeController = new ThemeController();
 const router = express.Router();
 
 router.post(
@@ -43,4 +47,4 @@ router.patch(
   themeController.updateTheme
 );
 
-module.exports = router;
+export default router;
