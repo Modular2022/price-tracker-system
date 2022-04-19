@@ -1,7 +1,7 @@
-import { DataTypes, Model } from "sequelize/types";
+import { DataTypes, Model } from "sequelize";
 import Database from '../db.config';
 
-class Denounce extends Model {
+class Store extends Model {
   declare id_store: number;
   declare url: string;
   declare name: string;
@@ -10,7 +10,7 @@ class Denounce extends Model {
 }
 
 
-Denounce.init(
+Store.init(
   {
     id_store: {
       type: DataTypes.BIGINT.UNSIGNED,
@@ -59,4 +59,4 @@ Denounce.init(
   }
 );
 
-export default Denounce;
+export default Store;

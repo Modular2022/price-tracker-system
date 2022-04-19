@@ -1,10 +1,10 @@
 import { Response, NextFunction, Request, RequestHandler } from 'express';
+import { col, fn } from 'sequelize';
 
 import HandlerFactoryController from '../common/handler-factory.controller';
 import ProductReviewDBModel from '../../database/models/product-review.model';
 import catchAsync from '../../utils/catch-async';
 import AppError from '../../utils/app-error';
-import { col, fn } from 'sequelize/types';
 
 export default class ProductReviewController {
 

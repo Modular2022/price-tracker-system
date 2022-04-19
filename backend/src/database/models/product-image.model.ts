@@ -1,4 +1,4 @@
-import { DataTypes, Model, NOW } from "sequelize/types";
+import { DataTypes, Model, NOW } from "sequelize";
 import Database from '../db.config';
 
 class ProductImage extends Model {

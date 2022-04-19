@@ -1,4 +1,5 @@
 import { Response, NextFunction, Request, RequestHandler } from 'express';
+import { QueryTypes, Sequelize } from 'sequelize';
 
 import HandlerFactoryController from '../common/handler-factory.controller';
 import StoreDBModel from '../../database/models/store.model';
@@ -7,7 +8,6 @@ import DepartmentDBModel from '../../database/models/department.model';
 import ProductCharacteristicsDBModel from '../../database/models/product-characteristic.model';
 import ProductDBModel from '../../database/models/product.model';
 import { DAY_MILLISECONDS, DEFAULT_PRODUCT_SCORE, LIMIT_DEFAULT, NUMBER_OF_DAYS_GET_AVERAGE, OFFSET_DEFAULT } from '../../utils/constants';
-import { QueryTypes, Sequelize } from 'sequelize/types';
 import ProductPriceDBModel from '../../database/models/product-price.model';
 import ProductImageBDModel from '../../database/models/product-image.model';
 import Database from '../../database/db.config';

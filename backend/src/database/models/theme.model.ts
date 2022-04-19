@@ -1,4 +1,4 @@
-import { DataTypes, Model } from "sequelize/types";
+import { DataTypes, Model } from "sequelize";
 import Database from '../db.config';
 
 class Theme extends Model {

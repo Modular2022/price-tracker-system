@@ -1,5 +1,5 @@
 import { Response, NextFunction, Request, RequestHandler } from 'express';
-import { Op } from 'sequelize/types';
+import { Op } from 'sequelize';
 
 import HandlerFactoryController from '../common/handler-factory.controller';
 import { DAY_MILLISECONDS, NUMBER_OF_DAYS_GET_AVERAGE, VERY_BIG_NUMBER } from '../../utils/constants';

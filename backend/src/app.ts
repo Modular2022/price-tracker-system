@@ -2,9 +2,11 @@ import dotenv from "dotenv";
 import Server from "./server";
 
 dotenv.config({
-  path: './config.env',
+  path: __dirname + '/../config.env',
 });
 
+console.log(process.env)
+console.log(__dirname, '/../config.env');
 
 const server = new Server();
 

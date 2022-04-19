@@ -1,4 +1,9 @@
 import { Options, Sequelize } from 'sequelize';
+import dotenv from "dotenv";
+
+dotenv.config({
+  path: __dirname + '/../../config.env',
+});
 
 class Database {
 
@@ -9,17 +14,16 @@ class Database {
     host: process.env.DB_HOST || '',
     port: Number(process.env.DB_PORT) || 3306,
     dialect: 'mysql',
-    sync: { force: true },
     pool: {
       max: 10, // Maximum number of connection in pool
       min: 0, // Minimum number of connection in pool
       idle: 10000, // The maximum time, in milliseconds, that a connection can be idle before being released.
       acquire: 60000, // The maximum time, in milliseconds, that pool will try to get connection before throwing error
     },
-    logging: true, // show log messages in terminal each request
+    logging: console.log, // show log messages in terminal each request
   };
 
-  static sequelize: Sequelize = new Sequelize(this.dbConfig);
+  static sequelize: Sequelize = new Sequelize(Database.dbConfig);
 
   constructor() { }
 
@@ -79,7 +83,7 @@ class Database {
       foreignKey: 'department_id',
       as: 'department',
     });
-    secuelize.models.Review.belongsTo(secuelize.models.Product, {
+    secuelize.models.ProductReview.belongsTo(secuelize.models.Product, {
       foreignKey: 'product_id',
       as: 'product',
     });
@@ -96,8 +100,9 @@ class Database {
   public async initialize() {
     try {
       const secuelizeRelationships = this.createDBRelationships(Database.sequelize);
-      const connectionMsg = await secuelizeRelationships.authenticate()
-      console.log(`Connection to database established - ${connectionMsg}`);
+      const connectionMsg = await secuelizeRelationships.authenticate();
+      const syncMsg = await secuelizeRelationships.sync();
+      console.log(`Connection to database established - ${connectionMsg} - ${syncMsg}`);
     } catch (error) {
       console.error(error);
       process.exit(1); // code 1 is for unhandled rejection, 0 means success

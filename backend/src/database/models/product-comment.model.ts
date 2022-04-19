@@ -1,4 +1,4 @@
-import { DataTypes, Model, NOW } from "sequelize/types";
+import { DataTypes, Model, NOW } from "sequelize";
 import Database from '../db.config';
 
 class ProductComment extends Model {
@@ -13,7 +13,7 @@ class ProductComment extends Model {
 
 ProductComment.init(
   {
-    id_comment: {
+    id_product_comment: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
       unique: true,
@@ -32,8 +32,8 @@ ProductComment.init(
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: true,
       references: {
-        model: 'comments',
-        key: 'id_comment',
+        model: 'product_comments',
+        key: 'id_product_comment',
       },
     },
     user_id: {
