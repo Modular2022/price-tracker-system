@@ -14,7 +14,7 @@ import UserWishlistResponse from '../../interfaces/user/user-wishlist-response.i
 
 export default class UserController {
 
-  createUser: RequestHandler = async (req, res, next) => {
+  createUser = async (req: Request, res: Response, next: NextFunction): Promise<{ createdUser: UserDBModel, resetToken: string }> => {
     const createdUser = await UserDBModel.create({
       full_name: req.body.full_name,
       email: req.body.email,

@@ -1,13 +1,14 @@
 import { Op } from 'sequelize';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 import catchAsync from '../../utils/catch-async';
 import AppError from '../../utils/app-error';
 import Email from '../../utils/email';
+import UserController from '../user/user.controller';
 import UserDBModel from '../../database/models/user.model';
 import UserToken from '../../database/models/user-token.model';
-import { NextFunction, Request, RequestHandler, Response } from 'express';
 import UserRequestMiddleware from '../../interfaces/user/user-request-middleware.i';
 
 class AuthController {
@@ -57,6 +58,7 @@ class AuthController {
   }
 
   public signup = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const userController = new UserController();
     const { createdUser, resetToken } = await userController.createUser(
       req,
       res,

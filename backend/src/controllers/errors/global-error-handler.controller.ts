@@ -1,6 +1,6 @@
 import { ErrorRequestHandler } from "express";
 
-const AppError = require('../utils/appError');
+import AppError from '../../utils/app-error';
 
 class GlobalErrorHandler {
 
