@@ -1,34 +1,28 @@
-<!--
-*** README TEMPLATE
--->
+## Price Tracker System
 
-## About The Project
+PriceTrackerSystem es una web app, capaz de almacenar listas e históricos de productos de diversas tiendas online, con el fin de obtener predicciones de precios y saber cuando es el mejor momento para comprar.
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+### Tecnologías involucradas
 
-Here's why:
+A continuación se enlistan los frameworks utilizados en el desarrollo de este proyecto.
 
--   Your time should be focused on creating something amazing. A project that solves a problem and helps others
--   You shouldn't be doing the same tasks over and over like creating a README from scratch
--   You should implement DRY principles to the rest of your life :smile:
+-  Frontend: [Angular](https://angular.io/)
+-  Backend: [Node.js](https://nodejs.org/es/)
+-  Scrapper: [Scrapy](https://scrapy.org/)
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
 
-Use the `BLANK_README.md` to get started.
+### Lenguajes de programación utilizados
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+-  JavaScript / TypeScript
+-  Python
 
-### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
--   [Next.js](https://nextjs.org/)
--   [React.js](https://reactjs.org/)
--   [Vue.js](https://vuejs.org/)
--   [Angular](https://angular.io/)
--   [Svelte](https://svelte.dev/)
--   [Laravel](https://laravel.com)
--   [Bootstrap](https://getbootstrap.com)
--   [JQuery](https://jquery.com)
+### Cómo trabajar con el repositorio
+
+El repo cuenta con 3 directorios generales, donde cada uno corresponde a cada aplicación (o proyecto) que conforma el sistema. Dentro de cada carpeta, existe un archivo 'README.md' con instrucciones acerca de cómo ejecutar cada proyecto.
+
+La rama 'master' será exclusiva para despliegues a producción o a un entorno de pruebas en defecto de que no exista una rama dedicada a las mismas.
+
+Desarrolladores, favor de trabajar sus avances sobre ramas aparte y al terminar, unir su código sin conflictos a la rama 'dev'. Si son cambios muy contundentes, utilizar pull requests estaría genial.

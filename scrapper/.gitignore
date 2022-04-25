@@ -1,0 +1,15 @@
+env/
+stores/*.txt
+stores/*.xslx
+stores/*.csv
+stores/*.html
+stores/products/
+stores/clear_bda.py
+stores/*.json
+# Eliminar stores/mierdas
+stores/mierdas/
+stores/mierdas
+stores/__pycache__/
+stores/__pycache__/*
+stores/logs/*
+stores/logs/

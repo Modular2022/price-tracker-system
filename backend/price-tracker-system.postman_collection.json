@@ -1,0 +1,23 @@
+{
+	"info": {
+		"_postman_id": "e952c167-b31c-4141-8c94-290f144cda42",
+		"name": "price-tracker-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test route - hello world",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

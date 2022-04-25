@@ -1,0 +1,23 @@
+# Define here the models for your scraped items
+#
+# See documentation in:
+# https://docs.scrapy.org/en/latest/topics/items.html
+
+import scrapy
+
+
+class Product(scrapy.Item):
+    # define the fields for your item here like:
+    store = scrapy.Field()
+    sku = scrapy.Field()
+    upc = scrapy.Field()
+    name = scrapy.Field()
+    brand = scrapy.Field()
+    images = scrapy.Field()
+    summary = scrapy.Field()
+    department = scrapy.Field()
+    description = scrapy.Field()
+    characteristics = scrapy.Field()
+    price = scrapy.Field()
+    date = scrapy.Field()
+    url = scrapy.Field()
