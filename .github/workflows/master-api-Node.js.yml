@@ -33,3 +33,4 @@ jobs:
         cache-dependency-path: backend/package-lock.json
     # this is for backend
     - run: npm i
+    - run: npm run build
