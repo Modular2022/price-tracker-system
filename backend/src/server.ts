@@ -118,6 +118,12 @@ class Server {
     this.app.use('/api/v1/department', departmentRouter);
     this.app.use('/api/v1/product', productRouter);
     this.app.use('/api/v1/user', userRouter);
+    this.app.use('/api/v1/status', (req, res) => {
+      res.status(200).json({
+        status: 'success',
+        message: 'Server is running',
+      });
+    });
 
     // Not found route at all
     this.app.all('*', (req, res, next) => {

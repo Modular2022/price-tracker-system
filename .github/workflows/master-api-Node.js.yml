@@ -34,3 +34,4 @@ jobs:
     # this is for backend
     - run: npm i
     - run: npm run build
+    - run: pm2 restart BackendModularAPI
