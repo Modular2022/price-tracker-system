@@ -116,7 +116,6 @@ class Server {
     this.app.use('/api/v1/product_request', productRequestRouter);
     this.app.use('/api/v1/store', storeRouter);
     this.app.use('/api/v1/department', departmentRouter);
-    this.app.use('/api/v1/product', productRouter);
     this.app.use('/api/v1/user', userRouter);
     this.app.use('/api/v1/status', (req, res) => {
       res.status(200).json({

@@ -6,14 +6,1192 @@
 	},
 	"item": [
 		{
-			"name": "test route - hello world",
+			"name": "OAuth",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"bonbeatleoz@gmail.com\",\r\n    \"password\": \"yosoyelornok821\",\r\n    \"full_name\": \"Andrés Ornelas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/oauth/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"oauth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"bonbeatleoz@gmail.com\",\r\n    \"password\": \"yosoyelornok821\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/oauth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"oauth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset password",
+					"request": {
+						"method": "PATCH",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "forgot password",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update password",
+					"request": {
+						"method": "PATCH",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "verify token",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update token",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Product prices",
+					"item": [
+						{
+							"name": "get all prices",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/:id_product/price",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										":id_product",
+										"price"
+									],
+									"variable": [
+										{
+											"key": "id_product",
+											"value": "5881"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get price by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/price/:id_price",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"price",
+										":id_price"
+									],
+									"variable": [
+										{
+											"key": "id_price",
+											"value": "526"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create price",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_product_price\": 781,\r\n    \"product_id\": 5881,\r\n    \"price\": 12029.36,\r\n    \"date\": \"2022-05-07T09:06:03.877Z\"\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/:id_product/price",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										":id_product",
+										"price"
+									],
+									"variable": [
+										{
+											"key": "id_product",
+											"value": "5881"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update price",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\": 3478,\r\n    \"price\": 10294.25,\r\n    \"date\": \"2022-05-05T00:00:00.000Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/price/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"price",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "528"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete price",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/price/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"price",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "526"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product characteristics",
+					"item": [
+						{
+							"name": "get all characteristics",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/:id_product/characteristic",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										":id_product",
+										"characteristic"
+									],
+									"variable": [
+										{
+											"key": "id_product",
+											"value": "4120"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get characteristic by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/characteristic/:id_characteristic",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"characteristic",
+										":id_characteristic"
+									],
+									"variable": [
+										{
+											"key": "id_characteristic",
+											"value": "189"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create a characteristic",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\": 4120,\r\n    \"property_name\": \"iruxxre\",\r\n    \"property_value\": \"Aliquip aute nisi cillum enim dolore cupidatat enim.\",\r\n    \"id_characteristic\": 189\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/:id_product/characteristic",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										":id_product",
+										"characteristic"
+									],
+									"variable": [
+										{
+											"key": "id_product",
+											"value": "4120"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update a characteristic",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_characteristic\": 233,\r\n    \"property_name\": \"Lorem\",\r\n    \"property_value\": \"Labore reprehenderit aute eiusmod velit anim nisi consectetur.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/characteristic/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"characteristic",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "233"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete a characteristic",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/characteristic/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"characteristic",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "189"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product images",
+					"item": [
+						{
+							"name": "create an image",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_product_image\": 444,\r\n    \"product_id\": 4120,\r\n    \"image\": \"https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/mg/gm/1p/images/product-images/img_large/00750154550761-2l.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/:id_product/image",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										":id_product",
+										"image"
+									],
+									"variable": [
+										{
+											"key": "id_product",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get an image by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/image/:id_image",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"image",
+										":id_image"
+									],
+									"variable": [
+										{
+											"key": "id_image",
+											"value": "442"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all images",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/:id_product/image",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										":id_product",
+										"image"
+									],
+									"variable": [
+										{
+											"key": "id_product",
+											"value": "4120"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete an image",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product//image/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"",
+										"image",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "445"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "get all products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4120"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_product\": 3557,\r\n    \"store_id\": 502,\r\n    \"department_id\": 9101,\r\n    \"sku\": \"GYIK-4684990\",\r\n    \"upc\": \"692511516936\",\r\n    \"name\": \"Lavadora automática 16KG Blanca\",\r\n    \"followers\": 52,\r\n    \"brand\": \"Samsung\",\r\n    \"summary\": \"Ut cupidatat dolore non laborum velit cupidatat duis aliquip.\",\r\n    \"description\": \"Labore fugiat enim commodo exercitation ut labore officia aliqua laboris ullamco nostrud magna quis. Adipisicing dolore voluptate eiusmod cillum irure et duis labore laborum minim in voluptate est. Do sunt et exercitation enim amet dolor irure eu consequat aliquip minim. Et cillum excepteur occaecat nisi aute consequat id sunt duis ex labore Lorem sunt voluptate. Labore minim sunt ipsum incididunt amet commodo commodo occaecat enim nostrud in deserunt anim eiusmod. Id incididunt officia amet quis.\",\r\n    \"url\": \"https://fakepage.com/products/45175\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/product",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update a product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_product\": 5881,\r\n    \"store_id\": 502,\r\n    \"department_id\": 9101,\r\n    \"sku\": \"0S6J-2567407\",\r\n    \"upc\": \"135721778805\",\r\n    \"name\": \"Lavadora automática 20KG blanca full-tech\",\r\n    \"followers\": 88,\r\n    \"brand\": \"Atvio\",\r\n    \"summary\": \"Tempor magna exercitation minim ad occaecat adipisicing dolore deserunt elit ut duis.\",\r\n    \"description\": \"Aliquip exercitation elit ad reprehenderit voluptate non ad est. Deserunt labore proident consequat sunt ullamco labore. Sint irure officia labore sint consectetur occaecat veniam amet esse ad in labore exercitation ipsum.\",\r\n    \"url\": \"https://fakepage.com/products/83142\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/product/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5881"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search product by name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product/search/:name",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"search",
+								":name"
+							],
+							"variable": [
+								{
+									"key": "name",
+									"value": "lavadora"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stores",
+			"item": [
+				{
+					"name": "create a store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"https://www.sams.com.mx/\",\r\n    \"name\": \"Sam's Club\",\r\n    \"color\": \"004B8D\",\r\n    \"image\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Sams_Club.svg/2048px-Sams_Club.svg.png\",\r\n    \"id_store\": 831\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all stores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get store by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/store/:id_store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"store",
+								":id_store"
+							],
+							"variable": [
+								{
+									"key": "id_store",
+									"value": "502"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete store",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/store/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"store",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"https://www.sams.com.mx/\",\r\n    \"name\": \"Sam's Club\",\r\n    \"color\": \"004B8D\",\r\n    \"image\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Sams_Club.svg/2048px-Sams_Club.svg.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/store/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"store",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "831"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Departments",
+			"item": [
+				{
+					"name": "create a department",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Línea blanca\",\r\n    \"description\": \"Nostrud Lorem duis excepteur aute quis cillum qui laborum laboris commodo ex voluptate qui incididunt. Ut commodo ut quis aute.\",\r\n    \"id_department\": 9101\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/department",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all departments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/department",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get department by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/department/:id_department",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"department",
+								":id_department"
+							],
+							"variable": [
+								{
+									"key": "id_department",
+									"value": "9101"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete department",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/department/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"department",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update department",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lavadoras\",\r\n    \"description\": \"Nostrud Lorem duis excepteur aute quis cillum qui laborum laboris commodo ex voluptate qui incididunt. Ut commodo ut quis aute.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/department/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"department",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9101"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": []
+		},
+		{
+			"name": "Test route - Status",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}",
+					"raw": "http://localhost:5000/api/v1/status",
+					"protocol": "http",
 					"host": [
-						"{{url}}"
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"status"
 					]
 				}
 			},
