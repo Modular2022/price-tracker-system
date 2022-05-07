@@ -41,7 +41,7 @@ export default class ProductPriceController {
       'product_prices',
       {
         attributes: ['id_product_price', 'product_id', 'price', 'date'],
-        where: { id_product_price: req.params.id_history },
+        where: { id_product_price: req.params.id_price },
       }
     );
     callback(req, res, next);
