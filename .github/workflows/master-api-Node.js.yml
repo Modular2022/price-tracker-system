@@ -38,7 +38,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: backend/package-lock.json
     # this is for backend
-    - run: podman stop $(podman ps --filter "ancestor=modular/backend" -q) 2>/dev/null
+    - run: podman stop $(podman ps --filter "ancestor=modular/backend" -q) 2> /dev/null || true
     - run: podman build -t modular/backend . 
     - run: podman run -d -p 5002:5002 modular/backend
 
