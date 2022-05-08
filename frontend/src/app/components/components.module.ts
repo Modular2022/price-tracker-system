@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from "./navbar/navbar.component";
-import { PrimengModule } from "../primeng/primeng/primeng.module";
+import { PrimengModule } from "../primeng/primeng.module";
 import { ProductCardComponent } from './product-card/product-card.component';
 
 

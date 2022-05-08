@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiServices: "https://carlos-carvajal.ddns.net/api/v1",
 };
