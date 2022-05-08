@@ -109,15 +109,15 @@ class Server {
 
   private createRoutes(): void {
     // Routes
-    this.app.use('/api/v1/oauth', authRouter);
-    this.app.use('/api/v1/theme', themeRouter);
-    this.app.use('/api/v1/denounce', denounceRouter);
-    this.app.use('/api/v1/product', productRouter);
-    this.app.use('/api/v1/product_request', productRequestRouter);
-    this.app.use('/api/v1/store', storeRouter);
-    this.app.use('/api/v1/department', departmentRouter);
-    this.app.use('/api/v1/user', userRouter);
-    this.app.use('/api/v1/status', (req, res) => {
+    this.app.use('/modular/api/v1/oauth', authRouter);
+    this.app.use('/modular/api/v1/theme', themeRouter);
+    this.app.use('/modular/api/v1/denounce', denounceRouter);
+    this.app.use('/modular/api/v1/product', productRouter);
+    this.app.use('/modular/api/v1/product_request', productRequestRouter);
+    this.app.use('/modular/api/v1/store', storeRouter);
+    this.app.use('/modular/api/v1/department', departmentRouter);
+    this.app.use('/modular/api/v1/user', userRouter);
+    this.app.use('/modular/api/v1/status', (req, res) => {
       res.status(200).json({
         status: 'success',
         message: 'Server is running',
