@@ -1,13 +1,15 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
+# cd /home/dev/searchlock/searchlockBackend && git pull && docker stop $(docker ps --filter "ancestor=enchingue/searchlock-backend" -q) && docker build -t enchingue/searchlock-backend . && docker run -d -p 3001:3001 enchingue/searchlock-backend
+
 name: Master API Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ dev, master ]
   pull_request:
-    branches: [ master ]
+    branches: [ dev, master ]
 
 jobs:
   build:
@@ -35,3 +37,4 @@ jobs:
     - run: npm i
     - run: npm run build
     - run: pm2 restart BackendModularAPI
+
