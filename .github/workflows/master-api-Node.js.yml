@@ -1,7 +1,11 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-# cd /home/dev/searchlock/searchlockBackend && git pull && docker stop $(docker ps --filter "ancestor=enchingue/searchlock-backend" -q) && docker build -t enchingue/searchlock-backend . && docker run -d -p 3001:3001 enchingue/searchlock-backend
+# cd /home/dev/searchlock/searchlockBackend 
+# git pull 
+# podman stop $(podman ps --filter "ancestor=modular/backend" -q) 2>/dev/null
+# podman build -t modular/backend . 
+# podman run -d -p 5002:5002 modular/backend
 
 name: Master API Node.js CI
 
@@ -34,7 +38,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: backend/package-lock.json
     # this is for backend
-    - run: npm i
-    - run: npm run build
-    - run: pm2 restart BackendModularAPI
+    - run: podman stop $(podman ps --filter "ancestor=modular/backend" -q) 2> /dev/null || true
+    - run: podman build -t modular/backend . 
+    - run: podman run -d -p 5002:5002 modular/backend
 
