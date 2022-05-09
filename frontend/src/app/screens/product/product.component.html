@@ -1,1 +1,78 @@
-<p>product works!</p>
+
+
+<div class="container-md" class="screen-container">
+  <p-progressSpinner *ngIf="loading"
+    class="align-self-center"
+    strokeWidth="3"
+    animationDuration="1s"></p-progressSpinner>   
+
+  <!--------------- Breadcrumbs --------------->
+  <div class="w-100" *ngIf="!loading && product">
+    <div class="row" >
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li *ngFor="let item of breadcrumbs" class="breadcrumb-item">
+              <a [routerLink]="item.route" routerLinkActive="active">{{ item.label }}</a>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!------------------------------------------>
+
+
+    <!--------------- Product Details --------------->
+    <div class="card product-details">
+      <div class="card-body">
+        <div class="row">
+          <!-- Carousel section -->
+          <div class="col-4">
+            <app-image-carousel
+              [images]="product.images!"></app-image-carousel>
+          </div>
+
+          <!-- Details section -->
+          <div class="col-8">
+            <h3 class="card-title">{{ product.name }}</h3>
+            <h4 class="card-subtitle mb-4 text-muted">{{ product.brand }}</h4>
+
+            <app-store-button
+              [store]="product.store"
+              [url]="product.url"></app-store-button>
+
+            <h6 class="card-subtitle mb-2 text-muted">SKU: {{ product.sku }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">UPC: {{ product.upc }}</h6> 
+
+            <p class="card-text mb-2">{{ product.summary }}</p>
+            <p class="card-text">{{ product.description }}</p>
+
+            <span class="badge bg-primary justify-content-center align-items-center price-badge">
+              {{ latestPrice | currency: 'MXN' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Product characteristics -->
+        <div class="row mt-4" *ngIf="areThereAnyCharacteristics">
+          <div class="col">
+            <h4>Características</h4>
+
+            <ul class="list-group list-group">
+              <li *ngFor="let char of characteristics"
+                class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">{{ char.property_name }}</div>
+                  {{ char.property_value }}
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------------------------------------------>
+
+  </div>
+</div>
+

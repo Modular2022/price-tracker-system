@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { GetAllProductsResponse, GetProductResponse } from "../helper/responses/product.response";
-import { map } from "rxjs/operators";
+import { delay, map } from "rxjs/operators";
 
 
 @Injectable({
@@ -19,7 +19,10 @@ export class ProductsService {
 
   getProduct(id: number) {
     return this.http.get<GetProductResponse>( `${ this.URL }/${ id }` )
-      .pipe( map( resp => resp.data.product ) );
+      .pipe(
+        delay(1000),
+        map( resp => resp.data.product )
+      );
   }
 
   getAllProducts( limit = 10, offset = 0 ) {

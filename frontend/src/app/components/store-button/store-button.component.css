@@ -1,0 +1,8 @@
+.wrapper {
+  margin-bottom: 1.2rem;
+  border-radius: 20px;
+  min-width: 110px;
+  height: 30px;
+  font-size: 14px;
+  display: inline-flex;
+}
