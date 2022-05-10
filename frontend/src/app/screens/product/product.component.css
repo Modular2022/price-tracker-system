@@ -1,9 +1,10 @@
 
 .screen-container{
   display: flex;
+  margin: 1rem;
   padding: 1.5rem;
   justify-content: center;
-  height: 100vh;
+  
 }
 
 .product-details {

@@ -1,0 +1,17 @@
+<div class="card w-100 h-100">
+  <div class="card-body d-flex justify-content-center align-items-center overflow-auto">
+
+    <ngb-carousel class="carousel carousel-dark slide" *ngIf="areThereAnyImages">
+      <ng-template ngbSlide *ngFor="let img of images">
+        <div class="d-flex justify-content-center align-items-center">
+          <img class="img" [src]="img.image">
+        </div>
+      </ng-template>
+    </ngb-carousel>
+
+    <div class="d-flex justify-content-center align-items-center" *ngIf="!areThereAnyImages">
+      <img class="img" [src]="unavailableImage">
+    </div>
+
+  </div>
+</div>

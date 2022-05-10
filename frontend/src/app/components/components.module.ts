@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { PrimengModule } from "../primeng/primeng.module";
@@ -8,10 +9,12 @@ import { ImageCarouselComponent } from './image-carousel/image-carousel.componen
 
 
 
+
 @NgModule({
   declarations: [NavbarComponent, ProductCardComponent, StoreButtonComponent, ImageCarouselComponent],
   imports: [
     CommonModule,
+    NgbModule,
     PrimengModule
   ],
   exports: [NavbarComponent, StoreButtonComponent, ImageCarouselComponent]

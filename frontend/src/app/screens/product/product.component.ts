@@ -60,7 +60,6 @@ export class ProductComponent implements OnInit {
           { label: this.product.department.name, route: `/departments/${ this.product.department_id }` },
           { label: this.product.name, },
         ];
-        console.log( this.latestPrice )
       },
 			error: (err) => console.warn(err),
 			complete: () => (this.loading = false),
