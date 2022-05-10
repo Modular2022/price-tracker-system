@@ -1,24 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+
+type CarouselItem = {
+
+}
 @Component({
-  selector: 'app-image-carousel',
-  templateUrl: './image-carousel.component.html',
-  styleUrls: ['./image-carousel.component.css']
+	selector: "app-image-carousel",
+	templateUrl: "./image-carousel.component.html",
+	styleUrls: ["./image-carousel.component.css"],
 })
 export class ImageCarouselComponent implements OnInit {
-  @Input() images: { image: string, id_product_image: number }[] = [];
 
-  get areThereAnyImages() {
-    return this.images.length > 0;
-  }
+	@Input() images: { image: string; id_product_image: number }[] = [];
 
-  get unavailablePlacerholderImage() {
-    return "https://faculty.eng.ufl.edu/machine-learning/wp-content/uploads/sites/58/2015/11/img-placeholder.png";
-  }
+	constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {}
 
 }

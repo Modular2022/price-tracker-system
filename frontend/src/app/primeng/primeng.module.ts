@@ -9,6 +9,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SplitterModule } from "primeng/splitter";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 import { CarouselModule } from "primeng/carousel";
+import { GalleriaModule } from "primeng/galleria";
 
 @NgModule({
 	declarations: [],
@@ -21,6 +22,7 @@ import { CarouselModule } from "primeng/carousel";
 		SplitterModule,
 		BreadcrumbModule,
     CarouselModule,
+    GalleriaModule,
 	],
 	exports: [
 		ButtonModule,
@@ -29,6 +31,7 @@ import { CarouselModule } from "primeng/carousel";
 		SplitterModule,
 		BreadcrumbModule,
     CarouselModule,
+    GalleriaModule,
 	],
 })
 export class PrimengModule {}
