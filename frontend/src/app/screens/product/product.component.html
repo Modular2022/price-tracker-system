@@ -73,6 +73,11 @@
     </div>
     <!------------------------------------------>
 
+    <!-- Product Chart -->
+    <div class="card product-chart" *ngIf="product.prices.length > 0">
+      <app-product-chart [id]="productId" [store]="product.store"></app-product-chart>
+    </div>
+
   </div>
 </div>
 
