@@ -24,7 +24,7 @@ router.get('/:id_product/image', productImageController.getAllProductImages);
 router.get('/image/:id_image', productImageController.getOneProductImage);
 
 router.delete(
-  '/image/:id_image',
+  '/image/:id',
   authController.protect,
   authController.restrictTo('admin'),
   productImageController.deleteProductImage

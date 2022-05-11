@@ -30,13 +30,13 @@ export default class ProductReviewController {
   createProductReview = (req: any, res: Response, next: NextFunction) => {
     req.body.product_id = req.params.id_product;
     req.body.user_id = req.user.id_user;
-    const createOne = this.handlerFactoryController.createOne(ProductReviewDBModel, 'reviews');
+    const createOne = this.handlerFactoryController.createOne(ProductReviewDBModel, 'product_reviews');
     createOne(req, res, next);
   };
 
   updateProductReview = catchAsync(async (req: any, res: Response, next: NextFunction) => {
     req.params.id = req.params.id_review;
-    const updateOne = this.handlerFactoryController.updateOne(ProductReviewDBModel, 'reviews', 'id_product_review');
+    const updateOne = this.handlerFactoryController.updateOne(ProductReviewDBModel, 'product_reviews', 'id_product_review');
     updateOne(req, res, next);
   });
 

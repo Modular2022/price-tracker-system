@@ -25,14 +25,14 @@ router.get(
 );
 
 router.delete(
-  '/price/:id_price',
+  '/price/:id',
   authController.protect,
   authController.restrictTo('admin'),
   productPriceController.deleteProductPrice
 );
 
 router.patch(
-  '/price/:id_price',
+  '/price/:id',
   authController.protect,
   authController.restrictTo('admin'),
   productPriceController.updateProductPrice

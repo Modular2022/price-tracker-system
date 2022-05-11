@@ -26,14 +26,14 @@ router.get(
 );
 
 router.delete(
-  '/characteristic/:id_characteristic',
+  '/characteristic/:id',
   authController.protect,
   authController.restrictTo('admin'),
   productCharacteristicController.deleteProductCharacteristic
 );
 
 router.patch(
-  '/characteristic/:id_characteristic',
+  '/characteristic/:id',
   authController.protect,
   authController.restrictTo('admin'),
   productCharacteristicController.updateProductCharacteristic

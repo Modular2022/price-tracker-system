@@ -140,11 +140,11 @@ export default class ProductController {
           ) as Average on Product.id_product = Average.product_id
         inner join product_history_prices as PHP on PHP.product_id = Product.id_product
         left join (
-          select product_id, avg(score) as score from reviews
+          select product_id, avg(score) as score from product_reviews
           group by product_id
         ) as Review on Review.product_id = Product.id_product
         left join (
-          select product_id, COUNT(score) as votes from reviews
+          select product_id, COUNT(score) as votes from product_reviews
           group by product_id
         ) as Vote on Vote.product_id = Product.id_product
         inner join stores as Store on Product.store_id = Store.id_store
@@ -218,11 +218,11 @@ export default class ProductController {
           ) as Average on Product.id_product = Average.product_id
         inner join product_history_prices as PHP on PHP.product_id = Product.id_product
         left join (
-          select product_id, avg(score) as score from reviews
+          select product_id, avg(score) as score from product_reviews
           group by product_id
         ) as Review on Review.product_id = Product.id_product
         left join (
-          select product_id, COUNT(score) as votes from reviews
+          select product_id, COUNT(score) as votes from product_reviews
           group by product_id
         ) as Vote on Vote.product_id = Product.id_product
         inner join stores as Store on Product.store_id = Store.id_store
@@ -271,7 +271,7 @@ export default class ProductController {
         exclude: ['followers', 'createdAt', 'updatedAt'],
       },
       where: {
-        id_product: req.params.id,
+        id_product: parseInt(req.params.id),
       },
       include: [
         {
