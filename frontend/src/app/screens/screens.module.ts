@@ -5,6 +5,7 @@ import { ScreensComponent } from "./screens.component";
 import { RouterModule } from "@angular/router";
 import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
+import { PrimengModule } from "../primeng/primeng.module";
 
 
 
@@ -17,7 +18,8 @@ import { SearchComponent } from './search/search.component';
   imports: [
     CommonModule,
     ComponentsModule,
-    RouterModule
+    RouterModule,
+    PrimengModule
   ]
 })
 export class ScreensModule { }

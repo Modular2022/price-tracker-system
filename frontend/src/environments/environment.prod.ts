@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  frontendEndpoint: "http://localhost:4200",
+  apiServices: "https://carlos-carvajal.ddns.net/api/v1",
 };
