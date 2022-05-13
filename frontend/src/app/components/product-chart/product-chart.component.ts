@@ -22,12 +22,20 @@ export class ProductChartComponent implements OnInit {
   chartLabels!: Label[];
   chartData!: ChartDataSets[];
 
+  get sortedPrices() {
+    return this.prices.sort( (a, b) => {
+      if (a.date > b.date) return 1;
+      if (a.date < b.date) return -1;
+      return 0
+    } );
+  }
+
   get onlyPrices() {
-    return this.prices.map( elm => elm.price );
+    return this.sortedPrices.map( elm => elm.price );
   }
 
   get datesToLabels() {
-    return this.prices.map( elm => new Date(elm.date).toLocaleDateString() );
+    return this.sortedPrices.map( elm => new Date(elm.date).toLocaleDateString() );
   }
 
   get color() {
