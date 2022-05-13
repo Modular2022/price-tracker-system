@@ -16,6 +16,19 @@ export default class ProductController {
 
   handlerFactoryController = new HandlerFactoryController();
 
+  getSearchQuery(querySearchText: string, columnName: string): string {
+    const words = [querySearchText, ...querySearchText.split(' ')];
+    let querySearch = `(`;
+    words.forEach((word: string, index: number) => {
+      querySearch += `lower( ${columnName} ) like '%${word.toLowerCase()}%'`;
+      if (index < words.length - 1) {
+        querySearch += ' or ';
+      }
+    });
+    querySearch += ')';
+    return querySearch;
+  }
+
   getWhereOfQuery = (req: Request) => {
     let whereQuery = ` where true `;
     if (req.params.id) {
@@ -131,14 +144,14 @@ export default class ProductController {
               SELECT * FROM 
                 (
                   select *, row_number() over(partition by product_id order by date desc) as pr
-                    from product_history_prices
+                    from product_prices
                 ) AS Price
                 where Price.date >= ${Date.now() - DAY_MILLISECONDS * NUMBER_OF_DAYS_GET_AVERAGE}
               ) as sub 
               group by sub.product_id
               order by average
           ) as Average on Product.id_product = Average.product_id
-        inner join product_history_prices as PHP on PHP.product_id = Product.id_product
+        inner join product_prices as PHP on PHP.product_id = Product.id_product
         left join (
           select product_id, avg(score) as score from product_reviews
           group by product_id
@@ -151,10 +164,10 @@ export default class ProductController {
         inner join departments as Department on Product.department_id = Department.id_department
         inner join
         (
-          select product_id, max(id_product_history_price) as id_product_history_price
-          from product_history_prices 
+          select product_id, max(id_product_price) as id_product_price
+          from product_prices 
           group by product_id
-        ) as ProductHistoryPrice on ProductHistoryPrice.id_product_history_price = PHP.id_product_history_price
+        ) as ProductPrices on ProductPrices.id_product_price = PHP.id_product_price
         left join 
           (
             select min(ProductImage.created_at) as date, min(ProductImage.id_product_image) as id, ProductImage.product_id
@@ -209,14 +222,14 @@ export default class ProductController {
               SELECT * FROM 
                 (
                   select *, row_number() over(partition by product_id order by date desc) as pr
-                    from product_history_prices
+                    from product_prices
                 ) AS Price
                 where Price.date >= ${Date.now() - DAY_MILLISECONDS * NUMBER_OF_DAYS_GET_AVERAGE}
               ) as sub 
               group by sub.product_id
               order by average
           ) as Average on Product.id_product = Average.product_id
-        inner join product_history_prices as PHP on PHP.product_id = Product.id_product
+        inner join product_prices as PHP on PHP.product_id = Product.id_product
         left join (
           select product_id, avg(score) as score from product_reviews
           group by product_id
@@ -229,10 +242,10 @@ export default class ProductController {
         inner join departments as Department on Product.department_id = Department.id_department
         inner join
         (
-          select product_id, max(id_product_history_price) as id_product_history_price
-          from product_history_prices 
+          select product_id, max(id_product_price) as id_product_price
+          from product_prices 
           group by product_id
-        ) as ProductHistoryPrice on ProductHistoryPrice.id_product_history_price = PHP.id_product_history_price
+        ) as ProductPrices on ProductPrices.id_product_price = PHP.id_product_price
         left join 
           (
             select min(ProductImage.created_at) as date, min(ProductImage.id_product_image) as id, ProductImage.product_id
@@ -241,10 +254,8 @@ export default class ProductController {
           ) as ImageId on ImageId.product_id = Product.id_product
         left join product_images as Image on ImageId.id = Image.id_product_image
         inner join (
-          select products.*, match(name, summary) against ('${req.params.name}'  IN NATURAL LANGUAGE MODE) as score 
-          from  products 
-          where match(name, summary) against ('${req.params.name}'  IN NATURAL LANGUAGE MODE) 
-          and   match(name, summary) against ('${req.params.name}'  IN NATURAL LANGUAGE MODE) > 1
+          select products.* from  products 
+          where ${this.getSearchQuery(req.params.name, 'name')}
         ) as ProductSearch on ProductSearch.id_product = Product.id_product
         ${this.getWhereOfQuery(req)}
         order by discount desc
