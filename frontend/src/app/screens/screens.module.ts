@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponentsModule } from "../components/components.module";
-import { ScreensComponent } from "./screens.component";
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { PrimengModule } from "../primeng/primeng.module";
 import { RouterModule } from "@angular/router";
+import { ScreensComponent } from "./screens.component";
 import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
-import { PrimengModule } from "../primeng/primeng.module";
+import { IndexComponent } from "./index/index.component";
 
 
 
 @NgModule({
   declarations: [
+    IndexComponent,
     ScreensComponent,
     ProductComponent,
     SearchComponent,
@@ -19,7 +22,8 @@ import { PrimengModule } from "../primeng/primeng.module";
     CommonModule,
     ComponentsModule,
     RouterModule,
-    PrimengModule
+    PrimengModule,
+    InfiniteScrollModule
   ]
 })
 export class ScreensModule { }

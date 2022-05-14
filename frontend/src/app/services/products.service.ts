@@ -26,10 +26,14 @@ export class ProductsService {
   }
 
   getAllProducts( limit = 10, offset = 0 ) {
-    const params = new HttpParams();
-    params.append( "limit", limit );
-    params.append( "offset", offset );
-    return this.http.get<GetAllProductsResponse>( this.URL, { params } );
+    const params = new HttpParams()
+                    .append( "limit", limit )
+                    .append( "offset", offset );
+    return this.http.get<GetAllProductsResponse>( this.URL, { params } )
+      .pipe(
+        delay(2000),
+        map( resp => resp.data.products )
+      );
   }
 
 }
