@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { FetchedProduct } from "src/app/helper/responses/product.response";
 import { ProductsService } from "src/app/services/products.service";
-import { environment } from "src/environments/environment";
 
 
 export type BreadcrumbItem = {

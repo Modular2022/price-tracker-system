@@ -10,6 +10,21 @@ export type FetchedProduct = Product & {
   images?: { image: string, id_product_image: number }[],
 }
 
+export type ProductPreview = {
+  id_product: number;
+  name:       string;
+  followers:  number;
+  url:        string;
+  average:    number;
+  image:      string | null;
+  discount:   number;
+  price:      { price: number, date: string };
+  score:      number;
+  votes:      number;
+  department: Department;
+  store:      Store;
+}
+
 export interface GetProductResponse {
   status: string;
   data: { product: FetchedProduct }
@@ -18,5 +33,5 @@ export interface GetProductResponse {
 export interface GetAllProductsResponse {
   status: string;
   results: number;
-  data: { products: Product[] }
+  data: { products: ProductPreview[] }
 }
