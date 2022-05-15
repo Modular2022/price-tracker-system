@@ -1,0 +1,9 @@
+
+.screen {
+  margin-top: 2rem;
+  min-height: 80vh;
+}
+
+.results-row {
+  min-height: 250px;
+}
