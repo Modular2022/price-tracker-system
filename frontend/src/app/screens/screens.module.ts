@@ -8,6 +8,8 @@ import { ScreensComponent } from "./screens.component";
 import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
 import { IndexComponent } from "./index/index.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MessageService } from "primeng/api";
 
 
 
@@ -20,10 +22,11 @@ import { IndexComponent } from "./index/index.component";
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ComponentsModule,
     RouterModule,
     PrimengModule,
     InfiniteScrollModule
-  ]
+  ],
 })
 export class ScreensModule { }

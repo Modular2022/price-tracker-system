@@ -1,1 +1,40 @@
-<p>search works!</p>
+<div class="container-md screen">
+
+  <form class="input-group mb-3" [formGroup]="searchControl.formGroup" (ngSubmit)="onSearch()">
+    <button type="submit" 
+      class="btn btn-outline-secondary"  
+      id="search-button"
+      [disabled]="inputEmpty">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <input type="text" 
+      class="form-control" 
+      placeholder="Buscar..."
+      formControlName="keyword">
+  </form>
+
+  <div class="row mt-2 results-row" *ngIf="loading">
+    <div class="col d-flex justify-content-center align-items-center">
+      <p-progressSpinner
+        *ngIf="loading"
+        class="align-self-center"
+        strokeWidth="3"
+        animationDuration="1s"></p-progressSpinner>
+    </div>
+  </div>
+
+  <div class="row mt-5 results-row" *ngIf="(!loading && results.length === 0)"> 
+    <div class="col d-flex justify-content-center align-items-center">
+      <h1 class="display-6 text-muted">No hay resultados que mostrar</h1>
+    </div>
+  </div>
+
+  <div class="row-cols-auto mt-5 d-flex justify-content-around" *ngIf="(!loading && results.length !== 0)"
+    infinite-scroll
+    (scrolled)="onScrollDown($event)">
+    <div class="col" *ngFor="let prdct of results">
+      <app-product-card [product]="prdct"></app-product-card>
+    </div>
+  </div>
+  
+</div>

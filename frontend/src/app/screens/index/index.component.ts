@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { MessageService } from "primeng/api";
 import { ProductsService } from "src/app/services/products.service";
 import { ProductPreview } from "../../helper/responses/product.response";
 
-type InfinteScrollEvent = {
+export type InfinteScrollEvent = {
   currentScrollPosition: number
 }
 @Component({
@@ -15,17 +16,26 @@ export class IndexComponent implements OnInit {
   loading: boolean = true;
   prdcts: ProductPreview[] = [];
 
-  limit: number = 1;
+  limit: number = 5;
   offset: number = 0;
 
 	constructor(
     private productsSrvc: ProductsService,
+    private messageService: MessageService
   ) {}
 
 	ngOnInit(): void {
     this.productsSrvc.getAllProducts(this.limit, this.offset).subscribe({
       next: (resp) => this.prdcts = resp,
-      error: (err) => console.warn(err),
+      error: (err) => {
+        // console.warn(err);
+        if (err.status === 0) 
+          this.messageService.add({
+            severity: "error",
+            summary: "Error desconocido",
+            detail: "Falla inesperada del servidor. Intente de nuevo más tarde."
+          });
+      },
       complete: () => this.loading = false,
     });
   }
