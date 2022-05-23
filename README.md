@@ -2,22 +2,18 @@
 
 PriceTrackerSystem es una web app, capaz de almacenar listas e históricos de productos de diversas tiendas online, con el fin de obtener predicciones de precios y saber cuando es el mejor momento para comprar.
 
-
 ### Tecnologías involucradas
 
 A continuación se enlistan los frameworks utilizados en el desarrollo de este proyecto.
 
--  Frontend: [Angular](https://angular.io/)
--  Backend: [Node.js](https://nodejs.org/es/)
--  Scrapper: [Scrapy](https://scrapy.org/)
-
+- Frontend: [Angular](https://angular.io/)
+- Backend: [Node.js](https://nodejs.org/es/)
+- Scrapper: [Scrapy](https://scrapy.org/)
 
 ### Lenguajes de programación utilizados
 
--  JavaScript / TypeScript
--  Python
-
-
+- JavaScript / TypeScript
+- Python
 
 ### Cómo trabajar con el repositorio
 
