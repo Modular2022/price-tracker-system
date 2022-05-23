@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from "@angular/forms";
-import Control from "../Control";
+import Control from "../control";
 
 
 export type Search = {
