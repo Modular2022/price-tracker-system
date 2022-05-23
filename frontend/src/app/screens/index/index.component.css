@@ -1,0 +1,7 @@
+.screen {
+  margin-top: 2.5rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+}

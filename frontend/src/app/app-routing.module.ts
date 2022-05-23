@@ -4,7 +4,7 @@ import { AppComponent } from "./app.component";
 import { ScreensRoutingModule } from "./screens/screens.routing";
 
 const routes: Routes = [ 
-  { path: "**", redirectTo: "" } 
+  { path: "**", redirectTo: "modular" } 
 ];
 
 @NgModule({

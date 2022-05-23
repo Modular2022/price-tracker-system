@@ -11,9 +11,9 @@ name: Master API Node.js CI
 
 on:
   push:
-    branches: [ dev, master ]
+    branches: [ master ]
   pull_request:
-    branches: [ dev, master ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -38,7 +38,8 @@ jobs:
         cache: 'npm'
         cache-dependency-path: backend/package-lock.json
     # this is for backend
-    - run: podman stop $(podman ps --filter "ancestor=localhost/modular/backend:latest" -q) 2> /dev/null || true
-    - run: podman build -t modular/backend . 
-    - run: podman run -d -p 5002:5002 modular/backend
+    # - run: podman stop $(podman ps -q --filter "ancestor=localhost/modular/backend:latest" -q) 2> /dev/null || true
+    # - run: podman rm $(podman ps -q --filter "ancestor=localhost/modular/backend:latest" -q) 2> /dev/null || true
+    - run: podman build -t modular/backend .
+    - run: podman run --name backend --replace --restart always --rmi -d -p 5002:5002 localhost/modular/backend:latest
 

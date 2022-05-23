@@ -1,1 +1,20 @@
-<p>product-card works!</p>
+<div class="card product-card">
+  <img [src]="image" alt="Imagen del producto">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text text-muted fw-bold">{{ store }}</p>
+
+    <div class="row">
+      <div class="col">
+        <a [routerLink]="link" class="btn btn-outline-dark card-button">
+          {{ price | currency: 'MXN' }}
+        </a>
+      </div>
+      <div class="col d-flex align-items-center">
+        <p class="card-text text-danger text-decoration-line-through" *ngIf="isWhatPercentOf( discount, price ) > 5">
+          {{ price+discount | currency: 'MXN' }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

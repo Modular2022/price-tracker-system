@@ -1,1 +1,24 @@
-<p>index works!</p>
+<div class="container-md screen">
+
+  <p-progressSpinner
+    *ngIf="loading"
+    class="align-self-center"
+    strokeWidth="3"
+    animationDuration="1s"></p-progressSpinner>
+
+  <div *ngIf="!loading && (prdcts.length !== 0)" class="w-100"
+    infinite-scroll
+    (scrolled)="onScrollDown($event)"
+    (scrolledUp)="onScrollUp($event)">
+    <div class="row-cols-auto d-flex justify-content-around">
+      <div class="col" *ngFor="let prdct of prdcts">
+        
+        <app-product-card
+          [product]="prdct"></app-product-card>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
