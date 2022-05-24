@@ -3,7 +3,8 @@ import json
 import scrapy
 import logging
 import datetime
-from items import Product
+# from items import Product
+from stores.items import Product
 from scrapy.utils.log import configure_logging 
 
 ''' Walmart Spider huehuehue

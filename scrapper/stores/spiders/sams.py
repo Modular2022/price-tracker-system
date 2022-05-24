@@ -2,7 +2,8 @@ import re
 import json
 import scrapy
 import datetime
-from items import Product
+# from items import Product
+from stores.items import Product
 from scrapy.utils.log import configure_logging 
 
 ''' Sam Spider huehuehue

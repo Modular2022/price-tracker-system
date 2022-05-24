@@ -11,6 +11,7 @@ from itemadapter import is_item, ItemAdapter
 from scrapy.utils.response import response_status_message
 from scrapy.downloadermiddlewares.retry import RetryMiddleware
 
+
 class SleepRetryMiddleware(RetryMiddleware):
 
     def __init__(self, settings):
@@ -25,7 +26,7 @@ class SleepRetryMiddleware(RetryMiddleware):
             self.sleep_mode()
             self._forbiden_counter = 0
         return super(SleepRetryMiddleware, self).process_response(request, response, spider)
-    
+
     def sleep_mode(self):
         count = 0
         while True:
@@ -34,6 +35,8 @@ class SleepRetryMiddleware(RetryMiddleware):
             count += 1
             if count == 3600:
                 break
+
+
 class StoresSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
