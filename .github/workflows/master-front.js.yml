@@ -35,4 +35,4 @@ jobs:
     # - run: podman stop $(podman ps -q --filter "ancestor=localhost/modular/frontend:latest" -q) 2> /dev/null || true
     # - run: podman rm $(podman ps -q --filter "ancestor=localhost/modular/frontend:latest" -q) 2> /dev/null || true
     - run: podman build -t modular/frontend .
-    - run: podman run --name frontend --replace --restart always --rmi -d -p 5001:80 localhost/modular/frontend:latest
+    - run: podman run --name frontend --replace --restart always --rmi -d -p 5001:8080 localhost/modular/frontend:latest
