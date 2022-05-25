@@ -4,6 +4,11 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+.product-card img {
+  max-width: 225px;
+  align-self: center;
+}
+
 .card-button {
   border-radius: 25px;
 }

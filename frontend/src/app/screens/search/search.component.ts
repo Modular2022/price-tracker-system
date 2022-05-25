@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
   loading: boolean = false;
   results: ProductPreview[] = [];
   params = {
-    limit: 50,
+    limit: 48,
     offset: 0,
   }
 
@@ -63,10 +63,11 @@ export class SearchComponent implements OnInit {
   onScrollDown(event: InfinteScrollEvent) {
     // show spinner
     this.loading = true;
+    this.params.offset = this.params.offset + this.params.limit;
     const { keyword } = this.searchControl.toPayload();
     this.productsSrvc.searchProducts(keyword, {
       limit: this.params.limit,
-      offset: this.params.offset + this.params.limit
+      offset: this.params.offset
     }).subscribe({
       next: (resp) => this.results = [ ...this.results, ...resp ],
       error: (err) => console.warn(err),

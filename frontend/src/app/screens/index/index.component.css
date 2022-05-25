@@ -5,3 +5,7 @@
   justify-content: center;
   overflow: auto;
 }
+
+.scroll-container {
+  overflow: hidden;
+}
