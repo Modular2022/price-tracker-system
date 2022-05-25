@@ -30,4 +30,5 @@ def save_price_history(filename, rows, headers=('date', 'price'), training_dir='
 
 if __name__ == '__main__':
     # TEST
-    get_price_history('B08F44M292')
+    # get_price_history('B08F44M292')
+    save_price_history('B08F44M292')
