@@ -60,12 +60,12 @@ export class PricePredictionComponent implements OnInit {
         },
         error: (err) => {
           console.warn(err);
-          if (err.status === 0) 
-          this.messageService.add({
-            severity: "error",
-            summary: "Error desconocido",
-            detail: "Falla inesperada del servidor. Intente de nuevo más tarde."
-          });
+          if (err.status === 500 || err.status === 0) 
+            this.messageService.add({
+              severity: "error",
+              summary: "Error desconocido",
+              detail: "Falla inesperada del servidor. Intente de nuevo más tarde."
+            });
         },
         complete: () => {
           this.loading = false;

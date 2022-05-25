@@ -29,7 +29,7 @@ export class IndexComponent implements OnInit {
       next: (resp) => this.prdcts = resp,
       error: (err) => {
         // console.warn(err);
-        if (err.status === 0) 
+        if (err.status === 500 || err.status === 0) 
           this.messageService.add({
             severity: "error",
             summary: "Error desconocido",
