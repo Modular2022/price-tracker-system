@@ -1,8 +1,8 @@
 ''' API '''
 
 # Base URL for make API calls
-# SERVER_URL = 'https://carlos-carvacrack.ddns.net:5002'
-SERVER_URL = 'http://carlos-carvacrack.ddns.net'
+SERVER_URL = 'https://carlos-carvacrack.ddns.net'
+# SERVER_URL = 'http://carlos-carvacrack.ddns.net'
 
 
 ''' Stablished API Calls for ServerPipeline
