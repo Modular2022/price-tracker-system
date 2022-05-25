@@ -19,9 +19,11 @@ def main(args=None):
 
     # Get json file with all found products
     filename = output.split(': ', 1)[1] + '.json'
-    query_dir = 'query_results'
-    new_path = os.path.join('predictor', query_dir, filename)
-    Path(filename).rename(new_path)
+    new_path = os.path.join('predictor', 'query_results', filename)
+    try:
+        Path(os.path.join('predictor', filename)).rename(new_path)
+    except Exception as e:
+        print("ERROR: Can't rename/move file")
     asins = get_products_asins(new_path)
 
     # Use Keepas API to get rows of product dates and price history
