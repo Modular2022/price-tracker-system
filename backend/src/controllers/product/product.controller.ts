@@ -336,7 +336,7 @@ export default class ProductController {
 
   getPredictionProduct = catchAsync(async (req: any, res: Response, next: NextFunction) => {
 
-    const name = req.query.name;
+    const name = req.query.name.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');;
     const spawnSync = ChildProcess.spawnSync;
     const pythonScript = spawnSync('python3', ["predictor/main.py", name]);
 
