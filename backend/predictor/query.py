@@ -20,7 +20,7 @@ def main(args=None):
     # Get json file with all found products
     filename = output.split(': ', 1)[1] + '.json' 
     query_dir = 'query_results'
-    new_path = os.path.join(query_dir, filename)
+    new_path = os.path.join('predictor', query_dir, filename)
     Path(filename).rename(new_path)      
     asins = get_products_asins(new_path)
 
