@@ -2,7 +2,7 @@ from statsmodels.tsa.arima.model import ARIMA
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-
+import json
 
 def plot_df(df, x, y, title="", xlabel='Date', ylabel='Value', dpi=100):
     plt.figure(figsize=(16, 5), dpi=dpi)
@@ -41,15 +41,15 @@ def predict_price(series, model_fit):
     final = final.values[0]
     val = inicial < final    
     percentile = ((final - inicial)/inicial)
-    return {
+    return json.dumps({
         'goesUp': str(val).lower(),
-        'value': str(final),
-        'percentage': str(percentile)
-    }
+        'value': final,
+        'percentage': percentile
+    })
 
 
-def main():
-    series = preprocess_data('training_data/prices.csv')
+def predict(filename):
+    series = preprocess_data(filename)
     model = train_model(series)
     json_obj = predict_price(series, model)
     print(json_obj)
@@ -61,6 +61,3 @@ def main():
 
     # train = series[series.index < pd.to_datetime("2022-04-01", format='%Y-%m-%d')]
     # test = series[series.index > pd.to_datetime("2022-04-02", format='%Y-%m-%d')]
-
-if __name__ == '__main__':
-    main()

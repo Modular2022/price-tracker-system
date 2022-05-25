@@ -1,2 +1,4 @@
 keepa
 pandas
+matplotlib
+statsmodels
