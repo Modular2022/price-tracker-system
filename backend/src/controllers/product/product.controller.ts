@@ -338,7 +338,7 @@ export default class ProductController {
 
     const name = req.query.name;
     const spawnSync = ChildProcess.spawnSync;
-    const pythonScript = spawnSync('python3', ["/home/charly/Documentos/universidad/price-tracker-system/backend/predictor/main.py", name]);
+    const pythonScript = spawnSync('python3', ["predictor/main.py", name]);
 
     const error = pythonScript.stderr.toString();
 
