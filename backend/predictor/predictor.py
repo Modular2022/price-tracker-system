@@ -48,8 +48,8 @@ def predict_price(series, model_fit):
     }
 
 
-def main():
-    series = preprocess_data('training_data/prices.csv')
+def predict(filename):
+    series = preprocess_data(filename)
     model = train_model(series)
     json_obj = predict_price(series, model)
     print(json_obj)
@@ -61,6 +61,3 @@ def main():
 
     # train = series[series.index < pd.to_datetime("2022-04-01", format='%Y-%m-%d')]
     # test = series[series.index > pd.to_datetime("2022-04-02", format='%Y-%m-%d')]
-
-if __name__ == '__main__':
-    main()
