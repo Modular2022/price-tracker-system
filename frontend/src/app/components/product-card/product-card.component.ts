@@ -17,7 +17,7 @@ export class ProductCardComponent {
   }
 
   get link() {
-    return `/modular/product/${ this.product.id_product }`;
+    return `/product/${ this.product.id_product }`;
   }
 
   get price() {

@@ -8,13 +8,13 @@
 }
 
 .product-details {
-  margin: 1.5rem;
+  margin: 1.5rem 10rem 1.5rem 10rem;
   padding: 2rem;
   min-height: 425px;
 }
 
 .product-chart {
-  margin: 2rem;
+  margin: 1.5rem 10rem 1.5rem 10rem;
   padding: 2rem;
 }
 
