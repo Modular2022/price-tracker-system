@@ -43,8 +43,8 @@ def predict_price(series, model_fit):
     percentile = ((final - inicial)/inicial)
     return json.dumps({
         'goesUp': str(val).lower(),
-        'value': str(final),
-        'percentage': str(percentile)
+        'value': final,
+        'percentage': percentile
     })
 
 
