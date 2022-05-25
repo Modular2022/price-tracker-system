@@ -72,12 +72,14 @@ class LiverpoolSpider(scrapy.Spider):
         try:    
             product['description'] = general_data['productDescription']
             product['summary'] = product['description'].split('.')[0]
-        except:
+        except Exception:
             product['description'] = ''
             product['summary'] = ''
         
         if len(product_data['galleriaImages']) > 0:
             product['images'] = product_data['galleriaImages'][0]
+        else:
+            product['images'] = ''
 
         characteristics = ''.join(general_data['dynamicAttributes'])
         cleaned_characteristics = self.clean_characteristics(characteristics)

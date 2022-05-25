@@ -227,6 +227,6 @@ products_urls = s.crawl_entire_site()
 random.shuffle(products_urls)  # UNCOMMENT
 
 process = CrawlerProcess(get_project_settings())
-# products_urls = products_urls[0:2]  # TODO: REMOVE LINE
+products_urls = products_urls[0:2]  ### TODO REMOVE LINE ###
 process.crawl(store, urls=products_urls)
 process.start()
