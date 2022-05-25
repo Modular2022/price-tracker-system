@@ -337,31 +337,26 @@ export default class ProductController {
   getPredictionProduct = catchAsync(async (req: any, res: Response, next: NextFunction) => {
 
     const name = req.query.name;
-    // const spawnSync = ChildProcess.spawnSync;
-    // const pythonScript = spawnSync('python3', ["predictor/main.py", ...name]);
+    const spawnSync = ChildProcess.spawnSync;
+    const pythonScript = spawnSync('python3', ["/home/charly/Documentos/universidad/price-tracker-system/backend/predictor/main.py", name]);
 
-    // console.log(`stderr: ${pythonScript.stderr.toString()}`);
-    // console.log(`stdout: ${pythonScript.stdout.toString()}`);
-    // let error = JSON.parse(pythonScript.stderr.toString()) || null;
-    // if (error) {
-    //   return next(new AppError(error, 500));
-    // }
-    // const pythonScriptResult = spawnSync('python3', ["predictor/main.py", "xbox"]);
-    // error = JSON.parse(pythonScriptResult.stderr.toString()) || null;
-    // if (error) {
-    //   return next(new AppError(error, 500));
-    // }
+    const error = pythonScript.stderr.toString();
 
-    // const result = JSON.parse(pythonScriptResult.stdout.toString());
-    const result: IPredictionResponse = {
-      goesUp: true,
-      value: 523.164,
-      percentage: 0.9,
-      name
+    pythonScript.stdout.toString().split('\n').forEach((element, index) => {
+      console.log(`${index}: ${element}`);
+    })
+
+    const result = pythonScript.stdout.toString().split('\n')[0];
+
+
+    if (!result.startsWith('{')) {
+      return next(new AppError(error, 500));
     }
 
+    const resultJSON: IPredictionResponse = JSON.parse(result);
+
     const data = {
-      prediction: result,
+      prediction: resultJSON,
     };
 
     res.status(200).json({
