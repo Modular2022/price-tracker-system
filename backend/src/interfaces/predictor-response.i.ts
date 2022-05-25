@@ -1,5 +1,5 @@
 export default interface IPredictionResponse {
-    prediction: string;
+    goesUp: boolean;
     value: number;
     percentage: number;    
   }
