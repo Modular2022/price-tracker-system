@@ -39,6 +39,8 @@ router.get('/', productController.getAllProducts);
 
 router.get('/:id', productController.getOneProduct);
 
+router.get('/:id/predict', productController.getPredictionProduct);
+
 router.get('/search/:name', productController.searchProduct);
 
 router.delete(

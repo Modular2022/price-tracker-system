@@ -1,5 +1,6 @@
 import { Response, NextFunction, Request, RequestHandler } from 'express';
 import { QueryTypes, Sequelize } from 'sequelize';
+import ChildProcess from 'child_process';
 
 import HandlerFactoryController from '../common/handler-factory.controller';
 import StoreDBModel from '../../database/models/store.model';
@@ -11,6 +12,8 @@ import { DAY_MILLISECONDS, DEFAULT_PRODUCT_SCORE, LIMIT_DEFAULT, NUMBER_OF_DAYS_
 import ProductPriceDBModel from '../../database/models/product-price.model';
 import ProductImageBDModel from '../../database/models/product-image.model';
 import Database from '../../database/db.config';
+import AppError from '../../utils/app-error';
+import IPredictionResponse from '../../interfaces/predictor-response.i';
 
 export default class ProductController {
 
@@ -330,6 +333,41 @@ export default class ProductController {
     });
     callback(req, res, next);
   };
+
+  getPredictionProduct = catchAsync(async (req: any, res: Response, next: NextFunction) => {
+
+    // const spawnSync = ChildProcess.spawnSync;
+    // const pythonScript = spawnSync('python3', ["predictor/main.py", "xbox"]);
+    // // const pythonScript = spawnSync('ls', ["-l"]);
+
+    // console.log(`stderr: ${pythonScript.stderr.toString()}`);
+    // console.log(`stdout: ${pythonScript.stdout.toString()}`);
+
+    // const result = JSON.parse(pythonScript.stdout.toString());
+    // const error = JSON.parse(pythonScript.stderr.toString());
+
+    // if (error) {
+    //   return next(new AppError(error, 500));
+    // }
+
+    const name = req.query.name.split(' ');
+
+    const result: IPredictionResponse = {
+      goesUp: true,
+      value: 523.164,
+      percentage: 0.9,
+      name
+    }
+
+    const data = {
+      prediction: result,
+    };
+
+    res.status(200).json({
+      status: 'success',
+      data,
+    });
+  });
 
   updateProduct = this.handlerFactoryController.updateOne(ProductDBModel, 'product', 'id_product');
 
