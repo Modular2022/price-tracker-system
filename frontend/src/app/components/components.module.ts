@@ -8,6 +8,7 @@ import { ProductCardComponent } from "./product-card/product-card.component";
 import { StoreButtonComponent } from "./store-button/store-button.component";
 import { ImageCarouselComponent } from "./image-carousel/image-carousel.component";
 import { ProductChartComponent } from "./product-chart/product-chart.component";
+import { PricePredictionComponent } from './price-prediction/price-prediction.component';
 
 @NgModule({
 	declarations: [
@@ -16,6 +17,7 @@ import { ProductChartComponent } from "./product-chart/product-chart.component";
 		StoreButtonComponent,
 		ImageCarouselComponent,
 		ProductChartComponent,
+    PricePredictionComponent,
 	],
 	imports: [CommonModule, ChartsModule, NgbModule, PrimengModule],
 	exports: [
@@ -24,6 +26,7 @@ import { ProductChartComponent } from "./product-chart/product-chart.component";
 		StoreButtonComponent,
 		ImageCarouselComponent,
 		ProductChartComponent,
+    PricePredictionComponent,
 	],
 })
 export class ComponentsModule {}

@@ -1,0 +1,17 @@
+
+<button type="button" class="btn btn-outline-success"
+  (click)="predict()" *ngIf="showPredictButton">PREDECIR PRECIO</button>
+
+<div class="d-inline-flex align-items-center" *ngIf="showPredictionResults">
+  <span [ngClass]="(prediction!.goesUp) ? 'btn btn-danger prediction-badge' : 'btn btn-success prediction-badge'">
+    <h3>
+      {{ (prediction!.value) ? '+' : '-' }}
+      {{ prediction!.value | currency }}
+    </h3>
+  </span> <h3 class="text-muted" style="margin-left: 0.8rem;"> {{ prediction!.percentage | percent }}</h3>
+</div>
+
+<p-progressSpinner *ngIf="loading"
+  class="align-self-center"
+  strokeWidth="3"
+  animationDuration="1s"></p-progressSpinner>   

@@ -11,7 +11,7 @@
         </a>
       </div>
       <div class="col d-flex align-items-center">
-        <p class="card-text text-danger text-decoration-line-through" *ngIf="isWhatPercentOf( discount, price ) > 5">
+        <p class="card-text text-danger text-decoration-line-through" *ngIf="isWhatPercentOf( discount, price ) > 2">
           {{ price+discount | currency: 'MXN' }}
         </p>
       </div>
