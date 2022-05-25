@@ -16,7 +16,7 @@ export class IndexComponent implements OnInit {
   loading: boolean = true;
   prdcts: ProductPreview[] = [];
 
-  limit: number = 5;
+  limit: number = 4;
   offset: number = 0;
 
 	constructor(
@@ -44,7 +44,8 @@ export class IndexComponent implements OnInit {
     // console.log("scroll down", event);
 
     // fetch more products
-    this.productsSrvc.getAllProducts(this.limit, this.offset+this.limit)
+    this.offset = this.offset+this.limit;
+    this.productsSrvc.getAllProducts(this.limit, this.offset)
       .subscribe({
         next: (resp) => this.prdcts = [ ...this.prdcts, ...resp ],
         error: (err) => console.warn(err),

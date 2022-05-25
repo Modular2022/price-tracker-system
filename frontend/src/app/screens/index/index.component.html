@@ -6,12 +6,12 @@
     strokeWidth="3"
     animationDuration="1s"></p-progressSpinner>
 
-  <div *ngIf="!loading && (prdcts.length !== 0)" class="w-100"
+  <div *ngIf="!loading && (prdcts.length !== 0)" class="w-100 scroll-container"
     infinite-scroll
     (scrolled)="onScrollDown($event)"
     (scrolledUp)="onScrollUp($event)">
-    <div class="row-cols-auto d-flex justify-content-around">
-      <div class="col" *ngFor="let prdct of prdcts">
+    <div class="row row-cols-sm-4 d-flex justify-content-around">
+      <div class="col mb-5" *ngFor="let prdct of prdcts">
         
         <app-product-card
           [product]="prdct"></app-product-card>
