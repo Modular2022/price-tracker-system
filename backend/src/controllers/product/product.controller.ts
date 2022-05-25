@@ -336,22 +336,23 @@ export default class ProductController {
 
   getPredictionProduct = catchAsync(async (req: any, res: Response, next: NextFunction) => {
 
+    const name = req.query.name;
     // const spawnSync = ChildProcess.spawnSync;
-    // const pythonScript = spawnSync('python3', ["predictor/main.py", "xbox"]);
-    // // const pythonScript = spawnSync('ls', ["-l"]);
+    // const pythonScript = spawnSync('python3', ["predictor/main.py", ...name]);
 
     // console.log(`stderr: ${pythonScript.stderr.toString()}`);
     // console.log(`stdout: ${pythonScript.stdout.toString()}`);
-
-    // const result = JSON.parse(pythonScript.stdout.toString());
-    // const error = JSON.parse(pythonScript.stderr.toString());
-
+    // let error = JSON.parse(pythonScript.stderr.toString()) || null;
+    // if (error) {
+    //   return next(new AppError(error, 500));
+    // }
+    // const pythonScriptResult = spawnSync('python3', ["predictor/main.py", "xbox"]);
+    // error = JSON.parse(pythonScriptResult.stderr.toString()) || null;
     // if (error) {
     //   return next(new AppError(error, 500));
     // }
 
-    const name = req.query.name.split(' ');
-
+    // const result = JSON.parse(pythonScriptResult.stdout.toString());
     const result: IPredictionResponse = {
       goesUp: true,
       value: 523.164,

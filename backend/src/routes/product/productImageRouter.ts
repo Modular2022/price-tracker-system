@@ -9,7 +9,6 @@ const fileController = new FileController();
 
 const router = express.Router();
 
-
 router.post(
   '/:id_product/image',
   authController.protect,
