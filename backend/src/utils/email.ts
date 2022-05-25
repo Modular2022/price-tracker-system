@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer';
 import pug from 'pug';
 import htmlToText from 'html-to-text';
-
 import IEmailTransport from '../interfaces/email-transport.i';
 import User from '../database/models/user.model';
 
@@ -10,37 +9,27 @@ export default class Email {
   firstName: string;
   url: string;
   from: string;
-  transportDev: IEmailTransport;
-  transportProd: IEmailTransport;
+  transport: IEmailTransport;
 
   constructor(user: User, url: string) {
     this.to = user.email;
     this.firstName = user.full_name.split(' ')[0];
     this.url = url;
     this.from = `${process.env.APP_NAME} team <${process.env.EMAIL_RESET}>`;
-    this.transportDev = {
-      host: process.env.EMAIL_HOST || '',
-      port: Number(process.env.EMAIL_PORT) || 0,
+    this.transport = {
+      // service: 'sendgrid',
+      host: process.env.EMAIL_HOST || 'smtp.sendgrid.net',
+      port: Number(process.env.EMAIL_PORT) || 587,
       auth: {
-        user: process.env.EMAIL_USERNAME || '',
+        user: process.env.EMAIL_USERNAME || 'apikey',
         pass: process.env.EMAIL_PASSWORD || '',
-      }
-    };
-    this.transportProd = {
-      host: process.env.EMAIL_HOST || '',
-      port: Number(process.env.EMAIL_PORT) || 0,
-      auth: {
-        user: process.env.EMAIL_USERNAME || '',
-        pass: process.env.EMAIL_PASSWORD || '',
+        // api_key: process.env.EMAIL_PASSWORD || '',
       },
     };
   }
 
   newTransport() {
-    if (process.env.NODE_ENV === 'production') {
-      return nodemailer.createTransport(this.transportProd);
-    }
-    return nodemailer.createTransport(this.transportDev);
+    return nodemailer.createTransport(this.transport);
   }
 
   // Send the actual email

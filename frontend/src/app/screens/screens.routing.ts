@@ -5,7 +5,7 @@ import { ScreensComponent } from "./screens.component";
 
 const routes: Routes = [
 	{
-		path: "modular",
+		path: "",
 		component: ScreensComponent,
     loadChildren: () => import("./child-routes.module").then( m => m.ChildRoutesModule )
 	},

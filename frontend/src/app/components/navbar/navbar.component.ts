@@ -14,8 +14,8 @@ export type NavbarItem = {
 export class NavbarComponent implements OnInit {
 
   items: NavbarItem[] = [
-    { label: "Inicio", route: "/modular/home" },
-    { label: "Buscador", route: "/modular/search" }
+    { label: "Inicio", route: "/home" },
+    { label: "Buscador", route: "/search" }
   ];
 
 	constructor() {}
