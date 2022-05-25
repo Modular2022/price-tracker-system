@@ -336,9 +336,9 @@ export default class ProductController {
 
   getPredictionProduct = catchAsync(async (req: any, res: Response, next: NextFunction) => {
 
-    const name = req.query.name;
+    const name = req.query.name.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');;
     const spawnSync = ChildProcess.spawnSync;
-    const pythonScript = spawnSync('python3', ["/home/charly/Documentos/universidad/price-tracker-system/backend/predictor/main.py", name]);
+    const pythonScript = spawnSync('python3', ["predictor/main.py", name]);
 
     const error = pythonScript.stderr.toString();
 
