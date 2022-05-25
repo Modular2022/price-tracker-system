@@ -6,8 +6,6 @@
 
 # useful for handling different item types with a single interface
 import os
-import re
-import time
 import json
 from turtle import update
 import requests
@@ -16,23 +14,9 @@ from errors import SequelizeUniqueConstraintError
 from errors import UnkownError
 import logging as log
 from scrapy import signals
-from itemadapter import ItemAdapter
 from scrapy.exporters import JsonItemExporter
 
-# Base URL for make API calls
-SERVER_URL = 'https://carlos-carvacrack.ddns.net'
-
-# API Calls
-LOGIN_CALL = SERVER_URL + '/modular/api/v1/oauth/login'
-UPDATE_TOKEN_CALL = SERVER_URL + '/modular/api/v1/oauth/update-token'
-CHECK_TOKEN_CALL = SERVER_URL + '/modular/api/v1/oauth/verify-token'
-
-# Product API Calls
-ADD_PRODUCT_CALL = SERVER_URL + '/modular/api/v1/product/scrap'
-UPDATE_PRODUCT_CALL = SERVER_URL + \
-    '/modular/api/v1/product/scrap/?sku={sku}&upc={upc}&store={store}'
-GET_ALL_PRODUCT_CALL = SERVER_URL + \
-    '/modular/api/v1/product?limit=10000000&offset=0'
+from constants import *
 
 
 class StoresPipeline:
@@ -106,9 +90,10 @@ class ServerPipeline:
         if not json_response or json_response['status'] == 'error':
             print(f"ERROR: Couldn't ADD product: {product}")
             return False
-            
+
         return True
     #
+
     def update_product(self, product):
         tmp = json.loads(product)
         updated_product_call = UPDATE_PRODUCT_CALL.format(
@@ -126,9 +111,9 @@ class ServerPipeline:
         #   make a query of product with title and get ASIN's
         #   get price history in keepas
         #   save date and price (and extra dimensions) on CSV
-        
+
         # for the current product
-        #   read csv 
+        #   read csv
         #   train a SARIMA model
         #   make prediction
         pass
@@ -150,10 +135,12 @@ class ServerPipeline:
         product = json.dumps(dict(item), indent=4,
                              sort_keys=True, ensure_ascii=True)
         succeed = self.add_product(product)
+        ### TODO UNCOMMENT LINES ###
         # if not succeed:
         #     self.update_product(product)
-        
+
         print(product)
+
         return item
 
     # This method is called when the spider is closed
@@ -163,11 +150,10 @@ class ServerPipeline:
     def get_response_content(self, response):
         try:
             if not response:
-                return None 
+                return None
             return response.json()
         except ValueError as e:
             print("ValueError" + e)
-
 
 
 ''' Json Pipeline this pipeline save the Item objects in to json file '''

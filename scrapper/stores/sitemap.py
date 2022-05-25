@@ -1,19 +1,13 @@
 #!/usr/bin/env /usr/bin/python3
-from ast import Store
 import os
 import re
 import gzip
 import json
-from reprlib import recursive_repr
-from unittest import runner
 import requests
 import random
-import hashlib
 
 from sys import argv
 
-from bs4 import BeautifulSoup as Soup
-from scrapy.http import headers
 from constants import *
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
@@ -28,7 +22,6 @@ class Sitemap:
         self.store_url = STORE_URLS[store]
         self.site_keyword = KEYWORD[store]
         self.products_urls = set()
-        # self.products_urls = []
 
     def create_sitemap(self):
         if self.store == 'walmart':
@@ -43,10 +36,10 @@ class Sitemap:
             return ElektraSitemap()
         elif self.store == 'homedepot':
             return HomedepotSitemap()
-            
+
     def get_xml_response(self, url):
         response = requests.get(url, headers=HEADERS)
-        if (200 != response.status_code):
+        if response.status_code != 200:
             return None
         string_xml = response.content.decode('utf-8')
         return string_xml
@@ -59,18 +52,22 @@ class Sitemap:
         url = self.store_url if url == None else url
         xml = self.get_xml_response(url)
         if not xml:
-            return
+            return None
+
         urls = self.parse_xml(xml)
         return urls
 
     def extract_products_from_urls(self, urls):
-        for url in urls:
-            if self.site_keyword in url:
-                p = self.extract_urls_from_sitemap(url)
-                if p:
-                    self.products_urls.update(p)
-                    break  # TODO: REMOVE LINE
-        return list(self.products_urls)
+        if urls:
+            for url in urls:
+                if self.site_keyword in url:
+                    p = self.extract_urls_from_sitemap(url)
+                    if p:
+                        self.products_urls.update(p)
+                        break  ### TODO REMOVE LINE ###
+            return list(self.products_urls)
+        else:
+            return None
 
 
 '''  '''
@@ -227,17 +224,9 @@ print('Tienda -> ', store)
 s = Sitemap(store).create_sitemap()
 
 products_urls = s.crawl_entire_site()
-random.shuffle(products_urls) #UNCOMMENT
+random.shuffle(products_urls)  # UNCOMMENT
 
 process = CrawlerProcess(get_project_settings())
 # products_urls = products_urls[0:2]  # TODO: REMOVE LINE
 process.crawl(store, urls=products_urls)
 process.start()
-
-# runner = CrawlerRunner(get_project_settings())
-# stores = argv[1:]
-# for store in stores:
-#     runner.crawl(store, urls=products_urls)
-# deferred = runner.join()
-# deferred.addBoth(lambda _: reactor.stop())
-# reactor.run()
