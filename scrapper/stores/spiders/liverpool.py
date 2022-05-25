@@ -55,42 +55,45 @@ class LiverpoolSpider(scrapy.Spider):
 
         if len(raw_data) == 0:
             print('Producto no disponible')
-
+            return None
+            
+        json_data = json.loads(raw_data[0])
+        
+        general_data = json_data['query']['data']['mainContent']['records'][0]['allMeta']
+        product_data = general_data['variants'][0]
+        # Definimos los atributos del JSON
+        product['store'] = self.name
+        product['url'] = response.url
+        product['sku'] = product_data['skuId']
+        product['upc'] = product_data['skuId']
+        product['name'] = general_data['title']
+        product['brand'] = ''.join([item['brandname'][0] for item in general_data['dynamicFacets'] if 'brandname' in item.keys() ])            
+        
+        try:    
+            product['description'] = general_data['productDescription']
+            product['summary'] = product['description'].split('.')[0]
+        except Exception:
+            product['description'] = ''
+            product['summary'] = ''
+        
+        if len(product_data['galleriaImages']) > 0:
+            product['images'] = product_data['galleriaImages'][0]
         else:
-            json_data = json.loads(raw_data[0])
-            
-            general_data = json_data['query']['data']['mainContent']['records'][0]['allMeta']
-            product_data = general_data['variants'][0]
-            # Definimos los atributos del JSON
-            product['store'] = self.name
-            product['url'] = response.url
-            product['sku'] = product_data['skuId']
-            product['upc'] = product_data['skuId']
-            product['name'] = general_data['title']
-            product['brand'] = ''.join([item['brandname'][0] for item in general_data['dynamicFacets'] if 'brandname' in item.keys() ])            
-            
-            try:    
-                product['description'] = general_data['productDescription']
-                product['summary'] = product['description'].split('.')[0]
-            except:
-                product['description'] = ''
-                product['summary'] = ''
-            
-            product['images'] = product_data['galleriaImages']
+            product['images'] = ''
 
-            characteristics = ''.join(general_data['dynamicAttributes'])
-            cleaned_characteristics = self.clean_characteristics(characteristics)
-            cleaned_characteristics = list(zip(cleaned_characteristics[0::2], cleaned_characteristics[1::2]))
-            product['characteristics'] = {charac[0]: charac[1] for charac in cleaned_characteristics}
-            
-            if len(general_data['variants']) > 1:
-                charact_variants = self.extract_variants(general_data['variants'])
-                product['characteristics']['variants'] = charact_variants
+        characteristics = ''.join(general_data['dynamicAttributes'])
+        cleaned_characteristics = self.clean_characteristics(characteristics)
+        cleaned_characteristics = list(zip(cleaned_characteristics[0::2], cleaned_characteristics[1::2]))
+        product['characteristics'] = {charac[0]: charac[1] for charac in cleaned_characteristics}
+        
+        if len(general_data['variants']) > 1:
+            charact_variants = self.extract_variants(general_data['variants'])
+            product['characteristics']['variants'] = charact_variants
 
-            departments = list(general_data['categories'][-1].values())
-            product['department'] = departments[-1]
+        departments = list(general_data['categories'][-1].values())
+        product['department'] = departments[-1]
 
-            product['price'] = self.select_price(product_data['prices'])
+        product['price'] = self.select_price(product_data['prices'])
 
         return product
 

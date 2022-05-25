@@ -1,8 +1,7 @@
 ''' API '''
 
 # Base URL for make API calls
-# SERVER_URL = 'https://carlos-carvacrack.ddns.net:5002'
-SERVER_URL = 'http://carlos-carvacrack.ddns.net'
+SERVER_URL = 'https://carlos-carvacrack.ddns.net'
 
 
 ''' Stablished API Calls for ServerPipeline
@@ -13,15 +12,17 @@ SERVER_URL = 'http://carlos-carvacrack.ddns.net'
         CHECK_TOKEN_CALL
  '''
 # API Calls
-LOGIN_CALL =  SERVER_URL + '/modular/api/v1/oauth/login'
-UPDATE_TOKEN_CALL =  SERVER_URL + '/modular/api/v1/oauth/update-token'
+LOGIN_CALL = SERVER_URL + '/modular/api/v1/oauth/login'
+UPDATE_TOKEN_CALL = SERVER_URL + '/modular/api/v1/oauth/update-token'
 CHECK_TOKEN_CALL = SERVER_URL + '/modular/api/v1/oauth/verify-token'
 
 
 # Product API Calls
-ADD_PRODUCT_CALL =  SERVER_URL + '/modular/api/v1/product/scrap'
-UPDATE_PRODUCT_CALL =   SERVER_URL + '/modular/api/v1/product/3'
-GET_ALL_PRODUCT_CALL =  SERVER_URL + '/modular/api/v1/product?limit=10000000&offset=0'
+ADD_PRODUCT_CALL = SERVER_URL + '/modular/api/v1/product/scrap'
+UPDATE_PRODUCT_CALL = SERVER_URL + \
+    '/modular/api/v1/product/scrap/?sku={sku}&upc={upc}&store={store}'
+GET_ALL_PRODUCT_CALL = SERVER_URL + \
+    '/modular/api/v1/product?limit=10000000&offset=0'
 
 
 ''' 

@@ -16,7 +16,7 @@ export class IndexComponent implements OnInit {
   loading: boolean = true;
   prdcts: ProductPreview[] = [];
 
-  limit: number = 4;
+  limit: number = 12;
   offset: number = 0;
 
 	constructor(

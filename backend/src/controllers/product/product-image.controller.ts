@@ -3,6 +3,7 @@ import { Response, NextFunction, Request, RequestHandler } from 'express';
 import HandlerFactoryController from '../common/handler-factory.controller';
 import catchAsync from '../../utils/catch-async';
 import ProductImageDBModel from '../../database/models/product-image.model';
+import UserRequestMiddleware from '../../interfaces/user/user-request-middleware.i';
 
 export default class ProductImageController {
 
@@ -16,7 +17,16 @@ export default class ProductImageController {
     next();
   });
 
-  createProductImage = this.handlerFactoryController.createOne(ProductImageDBModel, 'product_images');
+  createProductImage = catchAsync(async (req: UserRequestMiddleware, res: Response, next: NextFunction) => {
+    req.body.product_id = req.params.id_product;
+    const doc = await ProductImageDBModel.create(req.body);
+    const data: any = {};
+    data['product_images'] = doc;
+    res.status(201).json({
+      status: 'success',
+      data,
+    });
+  });
 
   getAllProductImages = (req: any, res: Response, next: NextFunction) => {
     const callback = this.handlerFactoryController.getAll(ProductImageDBModel, 'product_images', {

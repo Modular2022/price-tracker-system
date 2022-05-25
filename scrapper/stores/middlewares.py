@@ -20,7 +20,7 @@ class SleepRetryMiddleware(RetryMiddleware):
 
     def process_response(self, request, response, spider):
         # print('Sleepy Joe')
-        if response.status in [403]:
+        if response.status in [403, 404]:
             self._forbiden_counter += 1
         if self._forbiden_counter == 10:
             self.sleep_mode()

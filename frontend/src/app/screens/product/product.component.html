@@ -74,8 +74,15 @@
     <!------------------------------------------>
 
     <!-- Product Chart -->
-    <div class="card product-chart" *ngIf="product.prices.length > 0">
+    <div class="card product-section" *ngIf="product.prices.length > 0">
       <app-product-chart [id]="productId" [store]="product.store"></app-product-chart>
+    </div>
+
+
+    <!-- Product Price Prediction -->
+    <div class="card product-section justify-content-center align-items-center">
+      <app-price-prediction
+        [product]="product"></app-price-prediction>
     </div>
 
   </div>

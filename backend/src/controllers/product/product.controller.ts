@@ -1,5 +1,6 @@
 import { Response, NextFunction, Request, RequestHandler } from 'express';
 import { QueryTypes, Sequelize } from 'sequelize';
+import ChildProcess from 'child_process';
 
 import HandlerFactoryController from '../common/handler-factory.controller';
 import StoreDBModel from '../../database/models/store.model';
@@ -11,6 +12,8 @@ import { DAY_MILLISECONDS, DEFAULT_PRODUCT_SCORE, LIMIT_DEFAULT, NUMBER_OF_DAYS_
 import ProductPriceDBModel from '../../database/models/product-price.model';
 import ProductImageBDModel from '../../database/models/product-image.model';
 import Database from '../../database/db.config';
+import AppError from '../../utils/app-error';
+import IPredictionResponse from '../../interfaces/predictor-response.i';
 
 export default class ProductController {
 
@@ -330,6 +333,37 @@ export default class ProductController {
     });
     callback(req, res, next);
   };
+
+  getPredictionProduct = catchAsync(async (req: any, res: Response, next: NextFunction) => {
+
+    const name = req.query.name.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');;
+    const spawnSync = ChildProcess.spawnSync;
+    const pythonScript = spawnSync('python3', ["predictor/main.py", name]);
+
+    const error = pythonScript.stderr.toString();
+
+    pythonScript.stdout.toString().split('\n').forEach((element, index) => {
+      console.log(`${index}: ${element}`);
+    })
+
+    const result = pythonScript.stdout.toString().split('\n')[0];
+
+
+    if (!result.startsWith('{')) {
+      return next(new AppError(error, 500));
+    }
+
+    const resultJSON: IPredictionResponse = JSON.parse(result);
+
+    const data = {
+      prediction: resultJSON,
+    };
+
+    res.status(200).json({
+      status: 'success',
+      data,
+    });
+  });
 
   updateProduct = this.handlerFactoryController.updateOne(ProductDBModel, 'product', 'id_product');
 
