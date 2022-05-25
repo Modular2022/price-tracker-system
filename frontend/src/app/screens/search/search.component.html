@@ -29,10 +29,10 @@
     </div>
   </div>
 
-  <div class="row-cols-auto mt-5 d-flex justify-content-around" *ngIf="(!loading && results.length !== 0)"
+  <div class="row row-cols-sm-4 mt-5 d-flex justify-content-around" *ngIf="(!loading && results.length !== 0)"
     infinite-scroll
     (scrolled)="onScrollDown($event)">
-    <div class="col" *ngFor="let prdct of results">
+    <div class="col mb-5" *ngFor="let prdct of results">
       <app-product-card [product]="prdct"></app-product-card>
     </div>
   </div>
