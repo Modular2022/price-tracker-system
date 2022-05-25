@@ -3,6 +3,8 @@ import subprocess
 import history
 import json
 import os
+from pathlib import Path
+
 
 
 def main(args=None):
@@ -16,8 +18,11 @@ def main(args=None):
     output = get_cmd_output(command)
     
     # Get json file with all found products
-    filename = output.split(': ', 1)[1] + '.json'
-    asins = get_products_asins(filename)
+    filename = output.split(': ', 1)[1] + '.json' 
+    query_dir = 'query_results'
+    new_path = os.path.join(query_dir, filename)
+    Path(filename).rename(new_path)      
+    asins = get_products_asins(new_path)
 
     # Use Keepas API to get rows of product dates and price history
     for i, asin in enumerate(asins):
@@ -37,8 +42,7 @@ def get_cmd_output(command):
 def get_products_asins(filename, query_dir='query_results'):
     asins = set()
     try:
-        path = os.path.join(query_dir, filename)
-        with open(path , 'r') as f:
+        with open(filename, 'r') as f:
             products = json.load(f)
             for p in products:
                 asin = p.get('asin', '')
