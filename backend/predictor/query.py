@@ -21,7 +21,7 @@ def main(args=None):
     filename = output.split(': ', 1)[1] + '.json'
     new_path = os.path.join('predictor', 'query_results', filename)
     try:
-        Path(os.path.join('predictor', filename)).rename(new_path)
+        Path(filename).rename(new_path)
     except Exception as e:
         print("ERROR: Can't rename/move file")
     asins = get_products_asins(new_path)
