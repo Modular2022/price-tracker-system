@@ -14,7 +14,7 @@ def main(args=None):
         print("ERROR: Keywords required")
         return
 
-    command = f"amazon-buddy products -k '{keywords}' --country 'MX' --filetype json -n 1"
+    command = f"amazon-buddy products -k '{keywords}' --country 'MX' --filetype json"
     output = get_cmd_output(command)
     
     # Get json file with all found products

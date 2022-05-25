@@ -1,1 +1,4 @@
 .vscode/launch.json
+backend/predictor/training_data/*.csv
+backend/predictor/query_results/*.json
+backend/predictor/.venv
