@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   frontendEndpoint: "http://localhost:4200/modular",
-  apiServices: "http://localhost:5000/modular/api/v1",
+  apiServices: "http://localhost:5002/modular/api/v1",
 };
 
 /*
