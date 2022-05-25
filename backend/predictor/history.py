@@ -22,8 +22,8 @@ def get_price_history(asin):
     
 
 def save_price_history(filename, rows, headers=('date', 'price'), training_dir='training_data'):
-    path = os.path.join('predictor', training_dir, filename)
-    with open(path, 'w') as f:
+    # path = os.path.join('predictor', training_dir, filename)
+    with open(filename, 'w') as f:
         writer = csv.writer(f)
         writer.writerow(headers)
         writer.writerows(rows)
